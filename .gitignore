@@ -1,0 +1,9 @@
+# QA scratch screenshots / temp dumps
+_*.png
+_*.html
+_*.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
