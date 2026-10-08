@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=8" />
+  <link rel="stylesheet" href="styles.css?v=9" />
 </head>
 <body>
 
@@ -69,6 +69,11 @@
       </nav>
 
       <div class="nav-actions">
+        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Light and Dark Mode" title="Toggle Light / Dark Theme">
+          <span class="theme-icon theme-icon-sun" aria-hidden="true">&#9728;</span>
+          <span class="theme-icon theme-icon-moon" aria-hidden="true">&#9790;</span>
+          <span class="theme-toggle-label">Theme</span>
+        </button>
         <a href="#studio" class="btn-pledge-nav">
           <span class="pulse-dot"></span>
           <span>Pledge Now</span>
@@ -127,29 +132,32 @@
             <div class="organ-specular-light"></div>
           </div>
 
-          <!-- Floating Interactive Telemetry Badges -->
-          <div class="organ-telemetry-badge badge-heart">
+          <!-- Floating Interactive Telemetry Badges with Lives Saved Counters -->
+          <div class="organ-telemetry-badge badge-heart" data-organ="heart" data-saves="Saves 1 Patient">
             <span class="telemetry-badge-dot"></span>
             <div class="telemetry-badge-copy">
               <strong>Heart</strong>
-              <small>4–6 Hour Critical Window</small>
+              <small>Critical 4–6h Window</small>
             </div>
+            <span class="badge-saves-callout">✦ Saves 1 Patient</span>
           </div>
 
-          <div class="organ-telemetry-badge badge-kidneys">
+          <div class="organ-telemetry-badge badge-kidneys" data-organ="kidneys" data-saves="Saves 2 Patients">
             <span class="telemetry-badge-dot"></span>
             <div class="telemetry-badge-copy">
               <strong>Kidneys</strong>
-              <small>2 Patients Freed From Dialysis</small>
+              <small>2 Freed From Dialysis</small>
             </div>
+            <span class="badge-saves-callout">✦ Saves 2 Patients</span>
           </div>
 
-          <div class="organ-telemetry-badge badge-lungs">
+          <div class="organ-telemetry-badge badge-lungs" data-organ="lungs" data-saves="Saves 2 Lives">
             <span class="telemetry-badge-dot"></span>
             <div class="telemetry-badge-copy">
               <strong>Lungs</strong>
-              <small>Vital Pulmonary Respiration</small>
+              <small>Vital Pulmonary Breath</small>
             </div>
+            <span class="badge-saves-callout">✦ Saves 2 Lives</span>
           </div>
         </div>
       </div>
@@ -161,15 +169,28 @@
         <span class="section-kicker">3D Anatomical Telemetry</span>
         <h2 class="section-title">One Decision. Boundless Futures.</h2>
         <p class="section-subtitle">
-          Every organ transplant carries an immediate second chance at life. Explore the vital organs made possible through voluntary organ donation.
+          Hover over each vital organ to inspect exact clinical telemetry and see how many individuals are saved by your voluntary pledge.
         </p>
       </div>
 
       <div class="organ-matrix-grid">
         <!-- 3D Heart -->
-        <article class="organ-card">
+        <article class="organ-card" data-organ="heart" data-save-num="1" data-save-unit="Life Saved">
+          <div class="organ-card-save-chip">
+            <span class="save-chip-dot"></span>
+            <span>✦ Saves 1 Patient</span>
+          </div>
           <div class="organ-card-3d-thumb">
             <img src="media/3d-heart.jpg" alt="3D Anatomical Heart" loading="lazy" />
+            <div class="organ-hover-impact-hud" aria-hidden="true">
+              <div class="hud-top-tag">DIRECT LIFE IMPACT</div>
+              <div class="hud-stat-counter">
+                <span class="hud-num">1</span>
+                <span class="hud-unit">Patient Saved</span>
+              </div>
+              <p class="hud-explainer">Restores circulatory life to patients with end-stage heart failure.</p>
+              <div class="hud-metric">Critical Window: <strong>4–6 Hours</strong></div>
+            </div>
           </div>
           <h3 class="organ-card-title">Heart</h3>
           <p class="organ-card-desc">Restores circulatory life to patients suffering from end-stage cardiomyopathy and heart failure.</p>
@@ -180,9 +201,22 @@
         </article>
 
         <!-- 3D Kidneys -->
-        <article class="organ-card">
+        <article class="organ-card" data-organ="kidneys" data-save-num="2" data-save-unit="Patients Saved">
+          <div class="organ-card-save-chip">
+            <span class="save-chip-dot"></span>
+            <span>✦ Saves 2 Patients</span>
+          </div>
           <div class="organ-card-3d-thumb">
             <img src="media/3d-kidneys.jpg" alt="3D Anatomical Kidneys" loading="lazy" />
+            <div class="organ-hover-impact-hud" aria-hidden="true">
+              <div class="hud-top-tag">DIRECT LIFE IMPACT</div>
+              <div class="hud-stat-counter">
+                <span class="hud-num">2</span>
+                <span class="hud-unit">Patients Saved</span>
+              </div>
+              <p class="hud-explainer">Frees two individuals permanently from exhausting dialysis cycles.</p>
+              <div class="hud-metric">Dialysis Freedom: <strong>Permanent</strong></div>
+            </div>
           </div>
           <h3 class="organ-card-title">Kidneys</h3>
           <p class="organ-card-desc">Frees two individuals permanently from exhausting dialysis cycles, restoring independence and health.</p>
@@ -193,9 +227,22 @@
         </article>
 
         <!-- 3D Lungs -->
-        <article class="organ-card">
+        <article class="organ-card" data-organ="lungs" data-save-num="2" data-save-unit="Lives Saved">
+          <div class="organ-card-save-chip">
+            <span class="save-chip-dot"></span>
+            <span>✦ Saves 2 Lives</span>
+          </div>
           <div class="organ-card-3d-thumb">
             <img src="media/3d-lungs.jpg" alt="3D Anatomical Lungs" loading="lazy" />
+            <div class="organ-hover-impact-hud" aria-hidden="true">
+              <div class="hud-top-tag">DIRECT LIFE IMPACT</div>
+              <div class="hud-stat-counter">
+                <span class="hud-num">2</span>
+                <span class="hud-unit">Lives Saved</span>
+              </div>
+              <p class="hud-explainer">Gives breath back to patients battling severe pulmonary fibrosis and COPD.</p>
+              <div class="hud-metric">Graft Impact: <strong>2 Lungs = 2 Lives</strong></div>
+            </div>
           </div>
           <h3 class="organ-card-title">Lungs</h3>
           <p class="organ-card-desc">Gives breath back to patients battling severe pulmonary fibrosis, cystic fibrosis, and advanced COPD.</p>
@@ -206,9 +253,22 @@
         </article>
 
         <!-- 3D Liver -->
-        <article class="organ-card">
+        <article class="organ-card" data-organ="liver" data-save-num="2" data-save-unit="Recipients Saved">
+          <div class="organ-card-save-chip">
+            <span class="save-chip-dot"></span>
+            <span>✦ Saves Up to 2 Patients</span>
+          </div>
           <div class="organ-card-3d-thumb">
             <img src="media/3d-liver.jpg" alt="3D Anatomical Liver" loading="lazy" />
+            <div class="organ-hover-impact-hud" aria-hidden="true">
+              <div class="hud-top-tag">DIRECT LIFE IMPACT</div>
+              <div class="hud-stat-counter">
+                <span class="hud-num">2</span>
+                <span class="hud-unit">Recipients Saved</span>
+              </div>
+              <p class="hud-explainer">A single donor liver can be split to save both an adult and pediatric patient.</p>
+              <div class="hud-metric">Regenerative Capacity: <strong>100%</strong></div>
+            </div>
           </div>
           <h3 class="organ-card-title">Liver</h3>
           <p class="organ-card-desc">A single donor liver can be split to save both an adult and a pediatric patient facing acute liver failure.</p>
@@ -219,9 +279,22 @@
         </article>
 
         <!-- 3D Cornea -->
-        <article class="organ-card">
+        <article class="organ-card" data-organ="cornea" data-save-num="2" data-save-unit="People Given Sight">
+          <div class="organ-card-save-chip">
+            <span class="save-chip-dot"></span>
+            <span>✦ Restores Sight to 2 People</span>
+          </div>
           <div class="organ-card-3d-thumb">
             <img src="media/3d-cornea.jpg" alt="3D Anatomical Cornea & Eye" loading="lazy" />
+            <div class="organ-hover-impact-hud" aria-hidden="true">
+              <div class="hud-top-tag">DIRECT LIFE IMPACT</div>
+              <div class="hud-stat-counter">
+                <span class="hud-num">2</span>
+                <span class="hud-unit">People Given Sight</span>
+              </div>
+              <p class="hud-explainer">Restores visual clarity to individuals living with corneal blindness or trauma.</p>
+              <div class="hud-metric">Sensory Freedom: <strong>Restores Vision</strong></div>
+            </div>
           </div>
           <h3 class="organ-card-title">Corneas</h3>
           <p class="organ-card-desc">Restores the precious gift of sight to individuals living in darkness due to corneal blindness or trauma.</p>
@@ -232,8 +305,23 @@
         </article>
 
         <!-- Tissue -->
-        <article class="organ-card organ-card-tissue">
-          <div class="organ-card-icon-wrap">&#10047;</div>
+        <article class="organ-card organ-card-tissue" data-organ="tissue" data-save-num="50+" data-save-unit="People Healed">
+          <div class="organ-card-save-chip">
+            <span class="save-chip-dot"></span>
+            <span>✦ Heals 50+ Beneficiaries</span>
+          </div>
+          <div class="organ-card-3d-thumb organ-thumb-tissue">
+            <div class="organ-tissue-graphic">&#10047;</div>
+            <div class="organ-hover-impact-hud" aria-hidden="true">
+              <div class="hud-top-tag">DIRECT LIFE IMPACT</div>
+              <div class="hud-stat-counter">
+                <span class="hud-num">50+</span>
+                <span class="hud-unit">People Healed</span>
+              </div>
+              <p class="hud-explainer">Treats severe burn victims, prevents amputations, and restores bone structure.</p>
+              <div class="hud-metric">Tissue Reach: <strong>50+ Beneficiaries</strong></div>
+            </div>
+          </div>
           <h3 class="organ-card-title">Bone &amp; Skin Tissue</h3>
           <p class="organ-card-desc">Treats severe burn survivors, prevents limb amputations, and rebuilds skeletal structural integrity.</p>
           <div class="organ-card-stat">
@@ -330,53 +418,65 @@
                   <span>Gift of Life Specification</span>
                 </h3>
 
+                <!-- Real-Time Pledge Life Impact Meter -->
+                <div class="pledge-impact-meter" id="pledge-impact-meter">
+                  <div class="meter-header">
+                    <span class="meter-title">Estimated Direct Life Potential</span>
+                    <strong class="meter-counter" id="meter-counter-display">8 Lives Saved · 50+ Healed</strong>
+                  </div>
+                  <div class="meter-track">
+                    <div class="meter-fill" id="meter-fill-bar" style="width: 100%;"></div>
+                  </div>
+                  <p class="meter-footnote">Every selected organ or tissue carries an immediate life-saving second chance.</p>
+                </div>
+
                 <div class="form-group" id="organs-group">
                   <label class="form-label">
                     <span>Organs &amp; Tissues You Wish To Donate:</span>
-                    <small>Select all that apply</small>
+                    <small>Select all that apply · Hover each to see how many people it saves</small>
                   </label>
 
                   <div class="organ-check-grid">
-                    <label class="organ-check-item">
+                    <label class="organ-check-item" data-lives="1" data-healed="0" data-organ="Heart" title="Saves 1 patient with end-stage heart failure">
                       <input type="checkbox" name="organs" value="Heart" checked />
-                      <span>&#10084; Heart</span>
+                      <span>&#10084; Heart <em class="chip-lives-tag">Saves 1 Life</em></span>
                     </label>
-                    <label class="organ-check-item">
+                    <label class="organ-check-item" data-lives="2" data-healed="0" data-organ="Kidneys" title="Saves 2 patients from lifelong dialysis">
                       <input type="checkbox" name="organs" value="Kidneys" checked />
-                      <span>&#10042; Kidneys</span>
+                      <span>&#10042; Kidneys <em class="chip-lives-tag">Saves 2 Lives</em></span>
                     </label>
-                    <label class="organ-check-item">
+                    <label class="organ-check-item" data-lives="2" data-healed="0" data-organ="Liver" title="Saves up to 2 recipients via split-liver procedure">
                       <input type="checkbox" name="organs" value="Liver" checked />
-                      <span>&#10022; Liver</span>
+                      <span>&#10022; Liver <em class="chip-lives-tag">Saves 2 Lives</em></span>
                     </label>
-                    <label class="organ-check-item">
+                    <label class="organ-check-item" data-lives="2" data-healed="0" data-organ="Lungs" title="Saves 2 patients with severe pulmonary disease">
                       <input type="checkbox" name="organs" value="Lungs" checked />
-                      <span>&#9729; Lungs</span>
+                      <span>&#9729; Lungs <em class="chip-lives-tag">Saves 2 Lives</em></span>
                     </label>
-                    <label class="organ-check-item">
+                    <label class="organ-check-item" data-lives="1" data-healed="0" data-organ="Pancreas" title="Saves 1 patient battling severe diabetes & renal disease">
                       <input type="checkbox" name="organs" value="Pancreas" checked />
-                      <span>&#9881; Pancreas</span>
+                      <span>&#9881; Pancreas <em class="chip-lives-tag">Saves 1 Life</em></span>
                     </label>
-                    <label class="organ-check-item">
+                    <label class="organ-check-item" data-lives="0" data-healed="2" data-organ="Corneas" title="Restores sight to 2 individuals living with corneal blindness">
                       <input type="checkbox" name="organs" value="Corneas" checked />
-                      <span>&#10038; Corneas</span>
+                      <span>&#10038; Corneas <em class="chip-lives-tag">Sight for 2</em></span>
                     </label>
-                    <label class="organ-check-item">
+                    <label class="organ-check-item" data-lives="0" data-healed="10" data-organ="Bones" title="Heals 10+ patients needing orthopedic & skeletal reconstruction">
                       <input type="checkbox" name="organs" value="Bones" />
-                      <span>&#9776; Bones</span>
+                      <span>&#9776; Bones <em class="chip-lives-tag">Heals 10+</em></span>
                     </label>
-                    <label class="organ-check-item">
+                    <label class="organ-check-item" data-lives="0" data-healed="20" data-organ="Skin" title="Heals 20+ severe burn victims with biological skin grafts">
                       <input type="checkbox" name="organs" value="Skin" />
-                      <span>&#9638; Skin</span>
+                      <span>&#9638; Skin <em class="chip-lives-tag">Heals 20+</em></span>
                     </label>
-                    <label class="organ-check-item">
+                    <label class="organ-check-item" data-lives="0" data-healed="2" data-organ="Eyes" title="Restores vision to 2 individuals">
                       <input type="checkbox" name="organs" value="Eyes" />
-                      <span>&#9673; Eyes</span>
+                      <span>&#9673; Eyes <em class="chip-lives-tag">Sight for 2</em></span>
                     </label>
 
-                    <label class="organ-check-item item-all">
+                    <label class="organ-check-item item-all" data-lives="8" data-healed="50" data-organ="All" title="Maximum potential: Saves up to 8 lives and heals 50+ individuals">
                       <input type="checkbox" id="all-organs" name="organs" value="All organs and tissues to be used for transplantation, research, or education" />
-                      <span>&#10024; Donate All Organs &amp; Tissues (Transplantation, Research &amp; Education)</span>
+                      <span>&#10024; Donate All Organs &amp; Tissues <em class="chip-lives-tag">Max: 8 Lives + 50 Healed</em></span>
                     </label>
                   </div>
                   <p id="organs-error" style="color: var(--crimson-pulse); font-size: 0.85rem; margin-top: 8px;" hidden>Please select at least one organ or tissue.</p>

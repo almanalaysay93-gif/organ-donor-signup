@@ -27,6 +27,11 @@
   const btnDownloadCard = document.getElementById("btn-download-card");
   const btnSaveCardThankyou = document.getElementById("btn-save-card-thankyou");
 
+  // Light / Dark Theme and Impact Meter Elements
+  const themeToggleBtn = document.getElementById("theme-toggle-btn");
+  const meterCounterDisplay = document.getElementById("meter-counter-display");
+  const meterFillBar = document.getElementById("meter-fill-bar");
+
   // Inputs & Stages
   const fullNameInput = document.getElementById("fullName");
   const bloodTypeSelect = document.getElementById("bloodType");
@@ -37,6 +42,29 @@
   // 1. Generate Unique Registry ID
   const randomRegId = "PH-SPMC-2026-" + Math.floor(1000 + Math.random() * 9000);
   if (cardIdDisplay) cardIdDisplay.textContent = randomRegId;
+
+  // 1b. Light / Dark Theme Controller (Default: Light Theme)
+  function initTheme() {
+    const savedTheme = localStorage.getItem("spmc_donor_theme");
+    const currentTheme = savedTheme || "light";
+    document.documentElement.setAttribute("data-theme", currentTheme);
+    if (themeToggleBtn) {
+      themeToggleBtn.setAttribute("aria-pressed", currentTheme === "dark" ? "true" : "false");
+      themeToggleBtn.setAttribute("title", currentTheme === "dark" ? "Switch to Light Theme" : "Switch to Dark Theme");
+    }
+  }
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener("click", function () {
+      const current = document.documentElement.getAttribute("data-theme") || "light";
+      const next = current === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      localStorage.setItem("spmc_donor_theme", next);
+      themeToggleBtn.setAttribute("aria-pressed", next === "dark" ? "true" : "false");
+      themeToggleBtn.setAttribute("title", next === "dark" ? "Switch to Light Theme" : "Switch to Dark Theme");
+    });
+  }
+  initTheme();
 
   // 2. Sticky Nav Scroll Observer
   window.addEventListener("scroll", function () {
@@ -143,7 +171,53 @@
   if (fullNameInput) fullNameInput.addEventListener("input", updateLiveCard);
   if (bloodTypeSelect) bloodTypeSelect.addEventListener("change", updateLiveCard);
 
-  // Organ Checklist Logic
+  // Organ Checklist Logic & Live Pledge Impact Meter
+  function updatePledgeImpactMeter() {
+    if (!organsGroup || !meterCounterDisplay || !meterFillBar) return;
+
+    if (allOrgans && allOrgans.checked) {
+      meterCounterDisplay.textContent = "8 Lives Saved · 50+ Healed (Max Potential)";
+      meterFillBar.style.width = "100%";
+      return;
+    }
+
+    let totalLives = 0;
+    let totalHealed = 0;
+
+    const checkedBoxes = Array.from(organsGroup.querySelectorAll('input[type="checkbox"]:checked'))
+      .filter(cb => cb !== allOrgans);
+
+    checkedBoxes.forEach(function (cb) {
+      const parentLabel = cb.closest(".organ-check-item");
+      if (parentLabel) {
+        const lives = parseInt(parentLabel.getAttribute("data-lives") || "0", 10);
+        const healed = parseInt(parentLabel.getAttribute("data-healed") || "0", 10);
+        totalLives += lives;
+        totalHealed += healed;
+      }
+    });
+
+    if (totalLives === 0 && totalHealed === 0) {
+      meterCounterDisplay.textContent = "0 Lives Saved · Please select organs";
+      meterFillBar.style.width = "0%";
+    } else {
+      let text = "";
+      if (totalLives > 0 && totalHealed > 0) {
+        text = `${totalLives} ${totalLives === 1 ? "Life" : "Lives"} Saved · ${totalHealed}+ Healed`;
+      } else if (totalLives > 0) {
+        text = `${totalLives} ${totalLives === 1 ? "Life" : "Lives"} Saved`;
+      } else {
+        text = `${totalHealed}+ Individuals Healed`;
+      }
+      meterCounterDisplay.textContent = text;
+
+      const livesFactor = Math.min(totalLives / 8, 1);
+      const healedFactor = Math.min(totalHealed / 50, 1);
+      const percent = Math.min(100, Math.max(12, Math.round((livesFactor * 0.7 + healedFactor * 0.3) * 100)));
+      meterFillBar.style.width = `${percent}%`;
+    }
+  }
+
   if (allOrgans && organsGroup) {
     allOrgans.addEventListener("change", function () {
       if (allOrgans.checked) {
@@ -153,6 +227,7 @@
       }
       validateOrgans();
       updateLiveCard();
+      updatePledgeImpactMeter();
     });
 
     organsGroup.querySelectorAll('input[type="checkbox"]').forEach(function (cb) {
@@ -161,6 +236,7 @@
         if (cb.checked) allOrgans.checked = false;
         validateOrgans();
         updateLiveCard();
+        updatePledgeImpactMeter();
       });
     });
   }
@@ -514,6 +590,7 @@
     }
   }
 
-  // Initialize live card display
+  // Initialize live card display and pledge impact meter
   updateLiveCard();
+  updatePledgeImpactMeter();
 })();

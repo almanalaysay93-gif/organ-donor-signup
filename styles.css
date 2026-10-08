@@ -5,49 +5,49 @@
    ========================================================================== */
 
 :root {
-  /* Obsidian Depths & Void Canvas */
-  --bg-void: #030712;
-  --bg-obsidian: #050b18;
-  --bg-stage: #071224;
-  --bg-card: rgba(8, 20, 42, 0.72);
-  --bg-card-elevated: rgba(12, 28, 58, 0.86);
-  --bg-card-hover: rgba(16, 36, 74, 0.92);
-  --bg-input: rgba(4, 11, 24, 0.85);
+  /* Alabaster & Porcelain Luxury Light Canvas (Default) */
+  --bg-void: #faf8f5;
+  --bg-obsidian: #f4efe6;
+  --bg-stage: #ebe5d8;
+  --bg-card: rgba(255, 255, 255, 0.92);
+  --bg-card-elevated: #ffffff;
+  --bg-card-hover: #ffffff;
+  --bg-input: #ffffff;
 
-  /* 24K Royal Gold & Metallic Palette */
-  --gold-deep: #8c6a1d;
-  --gold-primary: #c9a23b;
-  --gold-light: #f4d381;
-  --gold-bright: #ffea9f;
-  --gold-muted: rgba(201, 162, 59, 0.28);
-  --gold-glow: rgba(244, 211, 129, 0.45);
-  --gold-gradient: linear-gradient(135deg, #8c6a1d 0%, #c9a23b 35%, #f9e8b6 50%, #c9a23b 70%, #8c6a1d 100%);
-  --gold-foil: linear-gradient(110deg, #9b7222 0%, #d4ab43 25%, #fff1c2 50%, #d4ab43 75%, #9b7222 100%);
-  --gold-text-grad: linear-gradient(135deg, #ffffff 0%, #f4d381 45%, #c9a23b 100%);
+  /* 24K Royal Gold & Burnished Metallic Palette */
+  --gold-deep: #785614;
+  --gold-primary: #a88226;
+  --gold-light: #c9a23b;
+  --gold-bright: #8c6a1d;
+  --gold-muted: rgba(168, 130, 38, 0.16);
+  --gold-glow: rgba(168, 130, 38, 0.22);
+  --gold-gradient: linear-gradient(135deg, #785614 0%, #a88226 35%, #fff1c2 50%, #a88226 70%, #785614 100%);
+  --gold-foil: linear-gradient(110deg, #785614 0%, #c9a23b 25%, #664910 50%, #c9a23b 75%, #785614 100%);
+  --gold-text-grad: linear-gradient(135deg, #2a2007 0%, #785614 45%, #a88226 100%);
 
   /* Clinical Life-Signs & Diagnostics */
-  --crimson-pulse: #e63946;
-  --crimson-glow: rgba(230, 57, 70, 0.5);
-  --emerald-success: #10b981;
-  --emerald-glow: rgba(16, 185, 129, 0.45);
-  --cyan-clinical: #38bdf8;
+  --crimson-pulse: #d90429;
+  --crimson-glow: rgba(217, 4, 41, 0.35);
+  --emerald-success: #059669;
+  --emerald-glow: rgba(5, 150, 105, 0.3);
+  --cyan-clinical: #0284c7;
 
   /* Typography Colors */
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --text-muted: #849ab0;
-  --text-gold: #f4d381;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-gold: #785614;
 
   /* Borders & Highlights */
-  --border-subtle: rgba(201, 162, 59, 0.18);
-  --border-gold: rgba(201, 162, 59, 0.42);
-  --border-gold-strong: rgba(244, 211, 129, 0.75);
+  --border-subtle: rgba(168, 130, 38, 0.18);
+  --border-gold: rgba(168, 130, 38, 0.35);
+  --border-gold-strong: rgba(168, 130, 38, 0.65);
   --hairline-gold: 1px solid var(--border-gold);
 
   /* Shadows & Illuminations */
-  --shadow-ambient: 0 20px 60px -15px rgba(0, 0, 0, 0.85);
-  --shadow-gold-glow: 0 0 40px -10px rgba(201, 162, 59, 0.35);
-  --shadow-card: 0 25px 50px -12px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.12);
+  --shadow-ambient: 0 20px 50px -15px rgba(80, 60, 20, 0.08), 0 4px 18px -2px rgba(0, 0, 0, 0.04);
+  --shadow-gold-glow: 0 0 35px -8px rgba(168, 130, 38, 0.2);
+  --shadow-card: 0 16px 36px -10px rgba(60, 45, 15, 0.07), inset 0 1px 1px rgba(255, 255, 255, 0.95);
 
   /* Typography Scales */
   --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
@@ -63,6 +63,46 @@
   --ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+[data-theme="dark"] {
+  /* Obsidian Depths & Void Canvas (Dark Mode) */
+  --bg-void: #030712;
+  --bg-obsidian: #050b18;
+  --bg-stage: #071224;
+  --bg-card: rgba(8, 20, 42, 0.72);
+  --bg-card-elevated: rgba(12, 28, 58, 0.86);
+  --bg-card-hover: rgba(16, 36, 74, 0.92);
+  --bg-input: rgba(4, 11, 24, 0.85);
+
+  --gold-deep: #8c6a1d;
+  --gold-primary: #c9a23b;
+  --gold-light: #f4d381;
+  --gold-bright: #ffea9f;
+  --gold-muted: rgba(201, 162, 59, 0.28);
+  --gold-glow: rgba(244, 211, 129, 0.45);
+  --gold-gradient: linear-gradient(135deg, #8c6a1d 0%, #c9a23b 35%, #f9e8b6 50%, #c9a23b 70%, #8c6a1d 100%);
+  --gold-foil: linear-gradient(110deg, #9b7222 0%, #d4ab43 25%, #fff1c2 50%, #d4ab43 75%, #9b7222 100%);
+  --gold-text-grad: linear-gradient(135deg, #ffffff 0%, #f4d381 45%, #c9a23b 100%);
+
+  --crimson-pulse: #e63946;
+  --crimson-glow: rgba(230, 57, 70, 0.5);
+  --emerald-success: #10b981;
+  --emerald-glow: rgba(16, 185, 129, 0.45);
+  --cyan-clinical: #38bdf8;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #849ab0;
+  --text-gold: #f4d381;
+
+  --border-subtle: rgba(201, 162, 59, 0.18);
+  --border-gold: rgba(201, 162, 59, 0.42);
+  --border-gold-strong: rgba(244, 211, 129, 0.75);
+
+  --shadow-ambient: 0 20px 60px -15px rgba(0, 0, 0, 0.85);
+  --shadow-gold-glow: 0 0 40px -10px rgba(201, 162, 59, 0.35);
+  --shadow-card: 0 25px 50px -12px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.12);
+}
+
 /* ==========================================================================
    Base & Reset
    ========================================================================== */
@@ -75,6 +115,10 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
   color-scheme: dark;
 }
 
@@ -132,6 +176,12 @@ button, input, select, textarea {
   position: absolute;
   inset: 0;
   overflow: hidden;
+  opacity: 0.16;
+  mix-blend-mode: multiply;
+  transition: opacity 0.5s ease;
+}
+
+[data-theme="dark"] .stage-video-wrap {
   opacity: 0.32;
   mix-blend-mode: screen;
 }
@@ -147,6 +197,10 @@ button, input, select, textarea {
 .stage-video-overlay {
   position: absolute;
   inset: 0;
+  background: radial-gradient(circle at 50% 40%, rgba(250, 248, 245, 0.4) 0%, rgba(250, 248, 245, 0.94) 80%);
+}
+
+[data-theme="dark"] .stage-video-overlay {
   background: radial-gradient(circle at 50% 40%, rgba(3, 7, 18, 0.3) 0%, rgba(3, 7, 18, 0.95) 80%);
 }
 
@@ -257,14 +311,23 @@ button, input, select, textarea {
   z-index: 50;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  background: rgba(4, 9, 20, 0.78);
+  background: rgba(250, 248, 245, 0.9);
   border-bottom: 1px solid var(--border-subtle);
   transition: all 0.3s ease;
 }
 
+[data-theme="dark"] .site-nav {
+  background: rgba(4, 9, 20, 0.78);
+}
+
 .site-nav.scrolled {
-  background: rgba(3, 7, 18, 0.94);
+  background: rgba(255, 255, 255, 0.96);
   border-bottom-color: var(--border-gold);
+  box-shadow: 0 10px 30px rgba(80, 60, 20, 0.08);
+}
+
+[data-theme="dark"] .site-nav.scrolled {
+  background: rgba(3, 7, 18, 0.94);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 }
 
@@ -295,8 +358,12 @@ button, input, select, textarea {
   height: 38px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
   transition: transform 0.25s var(--ease-spring);
+}
+
+[data-theme="dark"] .brand-insignias img {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
 }
 
 .brand-insignias img:hover {
@@ -354,8 +421,12 @@ button, input, select, textarea {
 }
 
 .nav-link:hover {
-  color: var(--gold-light);
+  color: var(--gold-deep);
   transform: translateY(-1px);
+}
+
+[data-theme="dark"] .nav-link:hover {
+  color: var(--gold-light);
 }
 
 .nav-link:hover::after {
@@ -365,7 +436,59 @@ button, input, select, textarea {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
+}
+
+/* Theme Toggle Pill Button */
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-spring);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.theme-toggle-btn:hover {
+  transform: translateY(-1px);
+  border-color: var(--gold-primary);
+  box-shadow: var(--shadow-gold-glow);
+}
+
+.theme-icon {
+  font-size: 0.95rem;
+  line-height: 1;
+  color: var(--gold-deep);
+}
+
+[data-theme="dark"] .theme-icon {
+  color: var(--gold-light);
+}
+
+[data-theme="dark"] .theme-icon-sun {
+  display: inline-block;
+}
+
+[data-theme="dark"] .theme-icon-moon {
+  display: none;
+}
+
+:root:not([data-theme="dark"]) .theme-icon-sun,
+html[data-theme="light"] .theme-icon-sun {
+  display: none;
+}
+
+:root:not([data-theme="dark"]) .theme-icon-moon,
+html[data-theme="light"] .theme-icon-moon {
+  display: inline-block;
 }
 
 .btn-pledge-nav {
@@ -660,28 +783,63 @@ button, input, select, textarea {
   mix-blend-mode: color-dodge;
 }
 
-/* Floating Telemetry Badges */
+/* Floating Telemetry Badges with Lives Saved Callouts */
 .organ-telemetry-badge {
   position: absolute;
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 10px 18px;
-  background: rgba(6, 17, 36, 0.85);
+  background: var(--bg-card);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border-gold);
   border-radius: 999px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(201, 162, 59, 0.2);
+  box-shadow: 0 10px 25px rgba(80, 60, 20, 0.08), 0 0 15px var(--gold-glow);
   z-index: 10;
   transition: all 0.3s var(--ease-spring);
   pointer-events: auto;
+  cursor: pointer;
+}
+
+[data-theme="dark"] .organ-telemetry-badge {
+  background: rgba(6, 17, 36, 0.88);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(201, 162, 59, 0.2);
 }
 
 .organ-telemetry-badge:hover {
-  transform: scale(1.06) translateY(-2px);
-  border-color: var(--gold-bright);
+  transform: scale(1.08) translateY(-3px);
+  border-color: var(--border-gold-strong);
+  box-shadow: 0 20px 40px rgba(80, 60, 20, 0.15), var(--shadow-gold-glow);
+}
+
+[data-theme="dark"] .organ-telemetry-badge:hover {
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85), 0 0 30px rgba(244, 211, 129, 0.4);
+}
+
+.badge-saves-callout {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(201, 162, 59, 0.15);
+  border: 1px solid var(--border-gold);
+  color: var(--gold-deep);
+  transition: all 0.25s var(--ease-spring);
+  white-space: nowrap;
+}
+
+[data-theme="dark"] .badge-saves-callout {
+  color: var(--gold-bright);
+}
+
+.organ-telemetry-badge:hover .badge-saves-callout {
+  background: var(--gold-gradient);
+  color: #201503;
+  box-shadow: 0 2px 10px rgba(201, 162, 59, 0.45);
+  transform: scale(1.05);
 }
 
 .badge-heart {
@@ -720,7 +878,7 @@ button, input, select, textarea {
 
 .telemetry-badge-copy strong {
   font-size: 0.85rem;
-  color: var(--gold-light);
+  color: var(--text-primary);
   font-family: var(--font-sans);
   line-height: 1.2;
 }
@@ -753,9 +911,13 @@ button, input, select, textarea {
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 2.2px;
-  color: var(--gold-light);
+  color: var(--gold-deep);
   margin-bottom: 14px;
   display: block;
+}
+
+[data-theme="dark"] .section-kicker {
+  color: var(--gold-light);
 }
 
 .section-title {
@@ -784,30 +946,76 @@ button, input, select, textarea {
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 28px;
+  padding: 26px;
   display: flex;
   flex-direction: column;
   transition: all 0.35s var(--ease-spring);
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-card);
 }
 
 .organ-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px);
   border-color: var(--border-gold-strong);
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7), 0 0 30px rgba(201, 162, 59, 0.2);
+  box-shadow: 0 25px 50px -10px rgba(80, 60, 20, 0.15), var(--shadow-gold-glow);
   background: var(--bg-card-hover);
 }
 
+[data-theme="dark"] .organ-card:hover {
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7), 0 0 30px rgba(201, 162, 59, 0.2);
+}
+
+/* Save Count Chip at top of Organ Card */
+.organ-card-save-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(168, 130, 38, 0.12);
+  border: 1px solid var(--border-gold);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--gold-deep);
+  margin-bottom: 16px;
+  transition: all 0.3s var(--ease-spring);
+}
+
+[data-theme="dark"] .organ-card-save-chip {
+  background: rgba(201, 162, 59, 0.15);
+  color: var(--gold-bright);
+}
+
+.save-chip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--emerald-success);
+  box-shadow: 0 0 10px var(--emerald-success);
+}
+
+.organ-card:hover .organ-card-save-chip {
+  background: var(--gold-gradient);
+  color: #201503;
+  border-color: #ffffff;
+  box-shadow: 0 4px 15px rgba(201, 162, 59, 0.35);
+  transform: translateY(-2px);
+}
+
+/* 3D Thumb Display Showcase */
 .organ-card-3d-thumb {
   width: 100%;
-  height: 190px;
+  height: 200px;
   border-radius: var(--radius-md);
   overflow: hidden;
   margin-bottom: 20px;
   background: #020610;
-  border: 1px solid rgba(201, 162, 59, 0.22);
-  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.8), 0 8px 24px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(201, 162, 59, 0.28);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.85), 0 10px 25px rgba(0, 0, 0, 0.2);
   position: relative;
   display: flex;
   align-items: center;
@@ -824,7 +1032,7 @@ button, input, select, textarea {
 
 .organ-card:hover .organ-card-3d-thumb img {
   transform: scale(1.08) translateY(-2px);
-  filter: brightness(1.12) contrast(1.15);
+  filter: brightness(1.1) contrast(1.15);
 }
 
 .organ-card-3d-thumb::after {
@@ -834,6 +1042,123 @@ button, input, select, textarea {
   pointer-events: none;
   background: radial-gradient(circle at 50% 50%, transparent 55%, rgba(2, 6, 16, 0.75) 100%);
   border-radius: inherit;
+}
+
+/* Tissue card thumb */
+.organ-thumb-tissue {
+  background: radial-gradient(circle at 50% 50%, #0d1e3d 0%, #020610 100%);
+}
+
+.organ-tissue-graphic {
+  font-size: 3.5rem;
+  color: var(--gold-light);
+  filter: drop-shadow(0 0 20px rgba(201, 162, 59, 0.5));
+  transition: transform 0.5s var(--ease-spring);
+}
+
+.organ-card:hover .organ-tissue-graphic {
+  transform: scale(1.15) rotate(8deg);
+}
+
+/* Interactive Hover Impact HUD */
+.organ-hover-impact-hud {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(246, 243, 235, 0.98) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: inherit;
+  border: 1.5px solid var(--border-gold-strong);
+  box-shadow: inset 0 0 20px rgba(201, 162, 59, 0.15), 0 12px 30px rgba(0, 0, 0, 0.15);
+  transform: translateY(105%);
+  opacity: 0;
+  transition: transform 0.4s var(--ease-spring), opacity 0.35s ease;
+  z-index: 5;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .organ-hover-impact-hud {
+  background: linear-gradient(180deg, rgba(6, 17, 36, 0.95) 0%, rgba(2, 6, 16, 0.98) 100%);
+  box-shadow: inset 0 0 20px rgba(201, 162, 59, 0.25), 0 12px 30px rgba(0, 0, 0, 0.85);
+}
+
+.organ-card:hover .organ-hover-impact-hud,
+.organ-card:focus-within .organ-hover-impact-hud {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.hud-top-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--crimson-pulse);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hud-top-tag::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--crimson-pulse);
+  box-shadow: 0 0 8px var(--crimson-pulse);
+}
+
+.hud-stat-counter {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.hud-num {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1;
+  background: var(--gold-text-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hud-unit {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.hud-explainer {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.hud-metric {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 8px;
+}
+
+.hud-metric strong {
+  color: var(--gold-deep);
+}
+
+[data-theme="dark"] .hud-metric strong {
+  color: var(--gold-bright);
 }
 
 .organ-card-icon-wrap {
@@ -846,9 +1171,13 @@ button, input, select, textarea {
   align-items: center;
   justify-content: center;
   font-size: 1.4rem;
-  color: var(--gold-light);
+  color: var(--gold-deep);
   margin-bottom: 20px;
   transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .organ-card-icon-wrap {
+  color: var(--gold-light);
 }
 
 .organ-card:hover .organ-card-icon-wrap {
@@ -880,6 +1209,10 @@ button, input, select, textarea {
   border-top: 1px solid var(--border-subtle);
   font-family: var(--font-mono);
   font-size: 0.75rem;
+  color: var(--gold-deep);
+}
+
+[data-theme="dark"] .organ-card-stat {
   color: var(--gold-light);
 }
 
@@ -890,6 +1223,10 @@ button, input, select, textarea {
   position: relative;
   z-index: 15;
   padding: 100px 24px;
+  background: linear-gradient(180deg, transparent 0%, rgba(244, 239, 230, 0.85) 20%, rgba(244, 239, 230, 0.85) 80%, transparent 100%);
+}
+
+[data-theme="dark"] .pledge-studio-section {
   background: linear-gradient(180deg, transparent 0%, rgba(5, 11, 24, 0.85) 20%, rgba(5, 11, 24, 0.85) 80%, transparent 100%);
 }
 
@@ -913,8 +1250,12 @@ button, input, select, textarea {
   border: 1px solid var(--border-gold);
   border-radius: var(--radius-lg);
   padding: 40px;
-  box-shadow: var(--shadow-ambient), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-ambient), inset 0 1px 1px rgba(255, 255, 255, 0.9);
   position: relative;
+}
+
+[data-theme="dark"] .form-glass-deck {
+  box-shadow: var(--shadow-ambient), inset 0 1px 1px rgba(255, 255, 255, 0.1);
 }
 
 .form-step-block {
@@ -945,6 +1286,69 @@ button, input, select, textarea {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Real-Time Pledge Life Impact Meter */
+.pledge-impact-meter {
+  background: rgba(168, 130, 38, 0.08);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="dark"] .pledge-impact-meter {
+  background: rgba(201, 162, 59, 0.1);
+}
+
+.meter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.meter-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.meter-counter {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gold-deep);
+}
+
+[data-theme="dark"] .meter-counter {
+  color: var(--gold-light);
+}
+
+.meter-track {
+  width: 100%;
+  height: 7px;
+  background: rgba(168, 130, 38, 0.16);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.meter-fill {
+  height: 100%;
+  background: var(--gold-gradient);
+  border-radius: 999px;
+  transition: width 0.4s var(--ease-spring);
+  box-shadow: 0 0 10px rgba(201, 162, 59, 0.45);
+}
+
+.meter-footnote {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  line-height: 1.35;
 }
 
 .form-row {
@@ -988,12 +1392,16 @@ button, input, select, textarea {
 }
 
 .form-control:focus {
-  border-color: var(--gold-light);
-  box-shadow: 0 0 15px rgba(201, 162, 59, 0.35);
-  background: rgba(8, 20, 42, 0.95);
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 15px rgba(201, 162, 59, 0.25);
+  background: var(--bg-card-elevated);
 }
 
 .form-control::placeholder {
+  color: rgba(100, 116, 139, 0.55);
+}
+
+[data-theme="dark"] .form-control::placeholder {
   color: rgba(148, 163, 184, 0.45);
 }
 
@@ -1030,11 +1438,18 @@ button, input, select, textarea {
 }
 
 .radio-chip input:checked + span {
+  background: rgba(201, 162, 59, 0.16);
+  border-color: var(--gold-primary);
+  color: var(--gold-deep);
+  box-shadow: 0 0 16px rgba(201, 162, 59, 0.2);
+  font-weight: 600;
+}
+
+[data-theme="dark"] .radio-chip input:checked + span {
   background: rgba(201, 162, 59, 0.18);
   border-color: var(--gold-bright);
   color: var(--gold-light);
   box-shadow: 0 0 16px rgba(201, 162, 59, 0.25);
-  font-weight: 600;
 }
 
 /* Organ Selection Interactive Checklist */
@@ -1046,6 +1461,7 @@ button, input, select, textarea {
 
 .organ-check-item {
   cursor: pointer;
+  position: relative;
 }
 
 .organ-check-item input {
@@ -1057,8 +1473,9 @@ button, input, select, textarea {
 .organ-check-item span {
   display: flex;
   align-items: center;
-  gap: 8px;
-  min-height: 44px;
+  justify-content: space-between;
+  gap: 6px;
+  min-height: 46px;
   padding: 8px 12px;
   background: var(--bg-input);
   border: 1px solid var(--border-subtle);
@@ -1068,12 +1485,47 @@ button, input, select, textarea {
   transition: all 0.2s ease;
 }
 
+.chip-lives-tag {
+  display: inline-block;
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: rgba(168, 130, 38, 0.12);
+  border: 1px solid var(--border-subtle);
+  color: var(--gold-deep);
+  margin-left: 4px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+[data-theme="dark"] .chip-lives-tag {
+  background: rgba(201, 162, 59, 0.15);
+  color: var(--gold-bright);
+}
+
+.organ-check-item:hover span {
+  border-color: var(--border-gold);
+  transform: translateY(-1px);
+}
+
+.organ-check-item:hover .chip-lives-tag {
+  background: var(--gold-gradient);
+  color: #201503;
+  border-color: #ffffff;
+}
+
 .organ-check-item input:checked + span {
-  background: rgba(201, 162, 59, 0.2);
+  background: rgba(201, 162, 59, 0.18);
   border-color: var(--gold-primary);
-  color: var(--gold-light);
+  color: var(--gold-deep);
   box-shadow: 0 0 12px rgba(201, 162, 59, 0.2);
   font-weight: 600;
+}
+
+[data-theme="dark"] .organ-check-item input:checked + span {
+  color: var(--gold-light);
 }
 
 .organ-check-item.item-all {
@@ -1081,12 +1533,17 @@ button, input, select, textarea {
 }
 
 .organ-check-item.item-all span {
-  background: rgba(14, 34, 68, 0.6);
+  background: rgba(201, 162, 59, 0.08);
   border-color: var(--border-gold);
-  color: var(--gold-light);
+  color: var(--gold-deep);
   font-weight: 600;
   justify-content: center;
   min-height: 48px;
+}
+
+[data-theme="dark"] .organ-check-item.item-all span {
+  background: rgba(14, 34, 68, 0.6);
+  color: var(--gold-light);
 }
 
 .organ-check-item.item-all input:checked + span {
@@ -1098,11 +1555,15 @@ button, input, select, textarea {
 
 /* Legal Conforme Checkbox */
 .conforme-box {
-  background: rgba(4, 11, 24, 0.6);
+  background: rgba(244, 239, 230, 0.7);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 18px;
   margin-top: 14px;
+}
+
+[data-theme="dark"] .conforme-box {
+  background: rgba(4, 11, 24, 0.6);
 }
 
 .conforme-label {
@@ -1482,10 +1943,18 @@ button, input, select, textarea {
 
 .btn-download-card {
   width: 100%;
-  background: rgba(14, 30, 56, 0.9);
+  background: var(--bg-card-elevated);
   border: 1px solid var(--border-gold);
-  color: var(--gold-light);
+  color: var(--gold-deep);
   font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 8px 25px rgba(80, 60, 20, 0.12);
+  transition: all 0.25s ease;
+}
+
+[data-theme="dark"] .btn-download-card {
+  background: rgba(14, 30, 56, 0.9);
+  color: var(--gold-light);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
 }
 
@@ -1494,7 +1963,7 @@ button, input, select, textarea {
   color: #030712;
   border-color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(201, 162, 59, 0.4);
+  box-shadow: 0 12px 30px rgba(168, 130, 38, 0.4);
 }
 
 /* ==========================================================================
@@ -1536,12 +2005,17 @@ button, input, select, textarea {
   text-align: center;
   position: relative;
   z-index: 1;
+  box-shadow: var(--shadow-card);
   transition: all 0.3s var(--ease-spring);
 }
 
 .pathway-step-card:hover {
   transform: translateY(-6px);
   border-color: var(--border-gold);
+  box-shadow: var(--shadow-ambient), 0 0 25px rgba(168, 130, 38, 0.2);
+}
+
+[data-theme="dark"] .pathway-step-card:hover {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(201, 162, 59, 0.2);
 }
 
@@ -1551,7 +2025,7 @@ button, input, select, textarea {
   border-radius: 50%;
   background: var(--bg-stage);
   border: 2px solid var(--gold-primary);
-  color: var(--gold-light);
+  color: var(--gold-deep);
   font-family: var(--font-mono);
   font-size: 1.15rem;
   font-weight: 700;
@@ -1559,6 +2033,11 @@ button, input, select, textarea {
   align-items: center;
   justify-content: center;
   margin: 0 auto 24px;
+  box-shadow: 0 4px 16px rgba(168, 130, 38, 0.2);
+}
+
+[data-theme="dark"] .step-num-badge {
+  color: var(--gold-light);
   box-shadow: 0 0 20px rgba(201, 162, 59, 0.35);
 }
 
@@ -1599,11 +2078,18 @@ button, input, select, textarea {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   overflow: hidden;
-  transition: border-color 0.25s ease;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .faq-item:hover, .faq-item[open] {
   border-color: var(--border-gold);
+  box-shadow: 0 10px 25px -5px rgba(80, 60, 20, 0.1);
+}
+
+[data-theme="dark"] .faq-item:hover,
+[data-theme="dark"] .faq-item[open] {
+  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.6);
 }
 
 .faq-trigger {
@@ -1701,9 +2187,13 @@ button, input, select, textarea {
 .site-footer {
   position: relative;
   z-index: 10;
-  background: #02050d;
+  background: var(--bg-obsidian);
   border-top: 1px solid var(--border-subtle);
   padding: 80px 24px 40px;
+}
+
+[data-theme="dark"] .site-footer {
+  background: #02050d;
 }
 
 .footer-container {
@@ -1760,6 +2250,10 @@ button, input, select, textarea {
   font-size: 0.75rem;
   letter-spacing: 1.8px;
   text-transform: uppercase;
+  color: var(--gold-deep);
+}
+
+[data-theme="dark"] .footer-deck-title {
   color: var(--gold-light);
 }
 
@@ -1768,12 +2262,20 @@ button, input, select, textarea {
   align-items: center;
   gap: 10px;
   padding: 10px 20px;
-  background: rgba(14, 30, 56, 0.6);
+  background: var(--bg-card-elevated);
   border: 1px solid var(--border-gold);
   border-radius: var(--radius-sm);
   font-size: 0.88rem;
-  color: var(--gold-light);
+  font-weight: 500;
+  color: var(--gold-deep);
+  box-shadow: 0 4px 12px rgba(80, 60, 20, 0.06);
   transition: all 0.25s ease;
+}
+
+[data-theme="dark"] .btn-social {
+  background: rgba(14, 30, 56, 0.6);
+  color: var(--gold-light);
+  box-shadow: none;
 }
 
 .btn-social:hover {
@@ -1785,7 +2287,7 @@ button, input, select, textarea {
 
 .footer-bottom-bar {
   padding-top: 30px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid var(--border-subtle);
   display: flex;
   justify-content: space-between;
   align-items: center;
