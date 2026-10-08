@@ -1,0 +1,24 @@
+# SHARE OTSU Organ Donor Registry Portal
+
+> Official organ donor registration platform for the Southern Philippines Medical Center (SPMC) and Department of Health (DOH) in Davao City, Philippines.
+
+## Overview
+- Organization: SHARE Organ Transplant Services Unit (OTSU)
+- Institution: Southern Philippines Medical Center (SPMC) & Department of Health (DOH)
+- Legal Basis: Republic Act No. 7170 (Organ Donation Act of 1991)
+- Mission: Modernize organ donation awareness, voluntary registry signup, and family communication across the Philippines.
+
+## Key Facts
+- Impact: A single deceased organ donor can save up to 8 lives and restore vision and mobility to over 50 tissue recipients.
+- Cost: 100% free and voluntary. All retrieval and transplant surgery costs are covered by the program, never billed to donor families.
+- Medical Priority: Emergency room and trauma doctors prioritize saving the patient's life first. Organ donation evaluation occurs strictly following certified clinical brain death.
+- Religious Stance: Major world religions (Catholicism, Protestantism, Islam, Buddhism) affirm organ donation as an altruistic act of love and mercy.
+
+## Available Actions
+- Register as an organ donor: Select specific organs (Heart, Kidneys, Liver, Lungs, Pancreas, Corneas, Bones, Skin) or all organs and tissues.
+- Digital Donor Card: Generates an immediate downloadable digital verification card with official SPMC & SHARE OTSU credentials.
+- Family Communication: Mandates legal notification to ensure next-of-kin honor the donor's wishes.
+
+## Contact & Location
+- Location: Southern Philippines Medical Center, J.P. Laurel Avenue, Bajada, Davao City, Philippines
+- Social: https://www.facebook.com/SHAREOTSU

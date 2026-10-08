@@ -3,249 +3,656 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Become an Organ Donor — SHARE OTSU</title>
-  <meta name="description" content="Register your decision to become an organ donor with the SHARE Organ Transplant Services Unit, Southern Philippines Medical Center. Free, voluntary, and life-giving." />
+  <title>Become an Organ Donor | SHARE OTSU — Southern Philippines Medical Center</title>
+  <meta name="description" content="Official Organ Donor Registry portal of the SHARE Organ Transplant Services Unit, Southern Philippines Medical Center (SPMC) & Department of Health. Register your pledge, generate your digital donor card, and save lives." />
 
+  <!-- Preconnect & Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=6" />
+  <link rel="stylesheet" href="styles.css?v=8" />
 </head>
 <body>
-  <!-- Grain overlay for atmosphere -->
-  <div class="grain" aria-hidden="true"></div>
 
-  <!-- Hidden iframe: the native form POSTs here so Google's no-CORS response is harmless.
-       The iframe's load event tells us the submission went through. -->
-  <iframe name="gform_target" id="gform_target" title="hidden form target" tabindex="-1"></iframe>
+  <!-- Hidden iframe for background form submission fallback -->
+  <iframe name="gform_target" id="gform_target" title="submission worker" tabindex="-1" style="display:none;"></iframe>
 
-  <!-- NAV -->
-  <header class="nav" id="top">
-    <a class="brand" href="#top" aria-label="SHARE OTSU home">
-      <img src="assets/share_logo.png" alt="SHARE — Human Advocate and Retrieval Effort, SPMC" class="brand-logo" />
-      <span class="brand-name">SHARE&nbsp;OTSU</span>
-    </a>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="#why">Why donate</a>
-      <a href="#how">How it works</a>
-      <a href="https://www.facebook.com/SHAREOTSU" target="_blank" rel="noopener noreferrer">Contact</a>
-      <a href="#signup" class="nav-cta">Sign up</a>
-    </nav>
+  <!-- 3D Parallax Canvas & Ambient Motion Graphics Stage -->
+  <div class="parallax-stage" id="parallax-stage" aria-hidden="true">
+    <!-- Layer -3: HyperFrames Rendered Organ Flow Motion Loop Video -->
+    <div class="stage-layer" data-depth="0.04">
+      <div class="stage-video-wrap">
+        <video class="stage-video" id="hero-loop-vid" autoplay muted loop playsinline preload="auto">
+          <source src="media/organ-bg-loop.mp4" type="video/mp4" />
+        </video>
+        <div class="stage-video-overlay"></div>
+      </div>
+    </div>
+
+    <!-- Layer -2: Deep Aurora Nebula Glows -->
+    <div class="stage-layer" data-depth="0.08">
+      <div class="stage-glow-1"></div>
+      <div class="stage-glow-2"></div>
+    </div>
+
+    <!-- Atmospheric Noise Texture -->
+    <div class="stage-noise"></div>
+  </div>
+
+  <!-- Bottom EKG Golden Biometric Monitor Line -->
+  <div class="ekg-telemetry-bar" aria-hidden="true">
+    <div class="ekg-line"></div>
+  </div>
+
+  <!-- STICKY SITE NAVIGATION -->
+  <header class="site-nav" id="site-nav">
+    <div class="nav-container">
+      <a href="#top" class="nav-brand" aria-label="SHARE OTSU Homepage">
+        <div class="brand-insignias">
+          <img src="assets/doh_logo.png" alt="DOH Logo" />
+          <img src="assets/spmc_logo.png" alt="SPMC Logo" />
+          <img src="assets/share_logo.png" alt="SHARE OTSU Logo" />
+        </div>
+        <div class="brand-title-wrap">
+          <span class="brand-name">SHARE OTSU</span>
+          <span class="brand-badge">Southern Philippines Medical Center</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="#why" class="nav-link">Why Donate</a>
+        <a href="#matrix" class="nav-link">3D Organ Impact</a>
+        <a href="#studio" class="nav-link">Pledge Registry</a>
+        <a href="#pathway" class="nav-link">How It Works</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#studio" class="btn-pledge-nav">
+          <span class="pulse-dot"></span>
+          <span>Pledge Now</span>
+        </a>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-bg" aria-hidden="true">
-        <div class="aurora"></div>
-        <span class="orb orb-a"></span>
-        <span class="orb orb-c"></span>
-      </div>
-      <div class="hero-inner">
-        <p class="eyebrow reveal" style="--d:0">SHARE Organ Transplant Services Unit · SPMC</p>
-        <h1 class="display hero-title">
-          <span class="reveal" style="--d:1">Give the gift</span>
-          <span class="reveal line-accent" style="--d:2">of life<em>.</em></span>
-        </h1>
-        <p class="lede reveal" style="--d:3">One donor can save up to eight lives. Register your decision to become an organ donor — free, voluntary, and quietly heroic.</p>
-        <div class="hero-cta reveal" style="--d:4">
-          <a href="#signup" class="btn btn-primary">Sign up as a donor</a>
-          <a href="#why" class="btn btn-ghost">Learn more</a>
-        </div>
-        <dl class="hero-stats reveal" style="--d:5">
-          <div><dt>8</dt><dd>lives one donor can save</dd></div>
-          <div><dt>₱0</dt><dd>cost to register</dd></div>
-          <div><dt>5&nbsp;min</dt><dd>to complete this form</dd></div>
-        </dl>
-      </div>
-      <div class="wave" aria-hidden="true">
-        <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,64 C360,128 1080,0 1440,64 L1440,120 L0,120 Z"/></svg>
-      </div>
-    </section>
+  <main id="top">
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-eyebrow-badge">
+            <span class="pulse-dot"></span>
+            <span>Official Donor Registry · SPMC &amp; DOH</span>
+          </div>
+          <h1 class="hero-title">
+            One decision. <br />
+            <span class="gold-accent">Eight lives saved.</span>
+          </h1>
+          <p class="hero-description">
+            A single organ donor can save up to eight lives and restore sight, mobility, and dignity to more than fifty tissue recipients. Register your decision today with SHARE OTSU under Republic Act No. 7170. Free, voluntary, and heroic.
+          </p>
 
-    <!-- WHY -->
-    <section class="why" id="why" data-reveal>
-      <div class="section-head">
-        <p class="kicker">Why it matters</p>
-        <h2 class="display">A single decision,<br /><span class="ital">many futures.</span></h2>
-        <p class="sub">Saying yes today means someone gets tomorrow. Here is what your sign-up makes possible.</p>
-      </div>
-      <div class="cards">
-        <article class="glass-card">
-          <span class="card-icon" aria-hidden="true">♥</span>
-          <h3>Save up to 8 lives</h3>
-          <p>A single organ donor can save up to eight lives, and restore sight and mobility to many more through tissue donation.</p>
-        </article>
-        <article class="glass-card">
-          <span class="card-icon" aria-hidden="true">✦</span>
-          <h3>Free &amp; voluntary</h3>
-          <p>Registering costs nothing and commits you to nothing legally binding. You decide, and you can speak with SHARE OTSU anytime.</p>
-        </article>
-        <article class="glass-card">
-          <span class="card-icon" aria-hidden="true">❋</span>
-          <h3>Honored by family</h3>
-          <p>When your loved ones know your wish, they can carry it out with confidence at the moment it matters most.</p>
-        </article>
-      </div>
-    </section>
+          <div class="hero-cta-group">
+            <a href="#studio" class="btn btn-primary">
+              <span>Sign Up As A Donor</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a href="#matrix" class="btn btn-secondary">Explore 3D Organ Matrix</a>
+          </div>
 
-    <!-- HOW -->
-    <section class="how" id="how" data-reveal>
-      <div class="wave wave-top" aria-hidden="true">
-        <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,56 C420,8 1020,120 1440,56 L1440,0 L0,0 Z"/></svg>
-      </div>
-      <div class="section-head">
-        <p class="kicker">Three quiet steps</p>
-        <h2 class="display">How it works</h2>
-      </div>
-      <div class="steps">
-        <article class="glass-card step">
-          <span class="step-num" aria-hidden="true">01</span>
-          <h3>Sign up</h3>
-          <p>Fill in the donor form below — your details and the organs you wish to give.</p>
-        </article>
-        <article class="glass-card step">
-          <span class="step-num" aria-hidden="true">02</span>
-          <h3>You're registered</h3>
-          <p>Your decision is recorded with the SHARE OTSU donor registry at SPMC.</p>
-        </article>
-        <article class="glass-card step">
-          <span class="step-num" aria-hidden="true">03</span>
-          <h3>Tell your family</h3>
-          <p>Have the conversation so the people who love you can support your wish.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- SIGNUP / FORM -->
-    <section class="signup" id="signup" data-reveal>
-      <div class="section-head">
-        <p class="kicker">Your decision</p>
-        <h2 class="display">Become a donor</h2>
-        <p class="sub">All fields are required. Your information is submitted to SHARE OTSU for organ donor registry purposes. Participation is entirely voluntary.</p>
-      </div>
-
-      <!-- Custom form posts to a Google Apps Script web app (set in script.js).
-           No Google login required for donors. -->
-      <form id="donor-form" method="POST" target="gform_target" novalidate>
-
-        <!-- SECTION 1: Donor Info -->
-        <div class="form-section">
-          <h3 class="form-legend"><span class="form-step">1</span> Donor information</h3>
-
-          <label class="field">
-            <span class="field-label">Full name <small>(First, Middle, Last)</small></span>
-            <input type="text" name="fullName" autocomplete="name" required />
-          </label>
-
-          <label class="field">
-            <span class="field-label">Birthday</span>
-            <input type="date" name="birthday" id="birthday" required />
-          </label>
-
-          <fieldset class="field choice-group">
-            <legend class="field-label">Sex</legend>
-            <div class="chips">
-              <label class="chip"><input type="radio" name="sex" value="Male" required /><span>Male</span></label>
-              <label class="chip"><input type="radio" name="sex" value="Female" /><span>Female</span></label>
+          <div class="hero-telemetry-strip">
+            <div class="telemetry-item">
+              <span class="telemetry-val">8</span>
+              <span class="telemetry-label">Lives One Donor Can Save</span>
             </div>
-          </fieldset>
-
-          <label class="field">
-            <span class="field-label">Address</span>
-            <input type="text" name="address" autocomplete="street-address" required />
-          </label>
-
-          <label class="field">
-            <span class="field-label">Mobile number</span>
-            <input type="tel" name="mobile" inputmode="tel" autocomplete="tel" required />
-          </label>
-
-          <fieldset class="field choice-group" id="organs-group">
-            <legend class="field-label">I wish to donate after my death my:</legend>
-            <div class="chips chips-wrap">
-              <label class="chip"><input type="checkbox" name="organs" value="Heart" /><span>Heart</span></label>
-              <label class="chip"><input type="checkbox" name="organs" value="Lungs" /><span>Lungs</span></label>
-              <label class="chip"><input type="checkbox" name="organs" value="Liver" /><span>Liver</span></label>
-              <label class="chip"><input type="checkbox" name="organs" value="Kidneys" /><span>Kidneys</span></label>
-              <label class="chip"><input type="checkbox" name="organs" value="Pancreas" /><span>Pancreas</span></label>
-              <label class="chip"><input type="checkbox" name="organs" value="Bones" /><span>Bones</span></label>
-              <label class="chip"><input type="checkbox" name="organs" value="Eyes" /><span>Eyes</span></label>
-              <label class="chip"><input type="checkbox" name="organs" value="Corneas" /><span>Corneas</span></label>
-              <label class="chip"><input type="checkbox" name="organs" value="Skin" /><span>Skin</span></label>
-              <label class="chip chip-all"><input type="checkbox" id="all-organs" name="organs" value="All organs and tissues to be used for transplantation, research, or education" /><span>All organs &amp; tissues — for transplantation, research, or education</span></label>
+            <div class="telemetry-item">
+              <span class="telemetry-val">50+</span>
+              <span class="telemetry-label">Tissue Recipients Restored</span>
             </div>
-            <p class="field-error" id="organs-error" role="alert" hidden>Please select at least one option.</p>
-          </fieldset>
+            <div class="telemetry-item">
+              <span class="telemetry-val">₱0</span>
+              <span class="telemetry-label">100% Free &amp; Voluntary</span>
+            </div>
+          </div>
         </div>
 
-        <!-- SECTION 2: Emergency Contact & Consent -->
-        <div class="form-section">
-          <h3 class="form-legend"><span class="form-step">2</span> Emergency contact &amp; consent</h3>
+        <!-- HERO RIGHT: 3D ORGAN CENTERPIECE STAGE (NO CARD) -->
+        <div class="hero-organ-stage" id="hero-organ-stage">
+          <div class="organ-stage-portal">
+            <div class="organ-pulse-ring"></div>
+            <div class="organ-pulse-ring-outer"></div>
+            <img src="media/3d-hero-organs.jpg" alt="3D Anatomical Organs of Life" class="hero-organs-3d-img" id="hero-organs-img" />
+            <div class="organ-specular-light"></div>
+          </div>
 
-          <label class="field">
-            <span class="field-label">Email address</span>
-            <input type="email" name="email" autocomplete="email" required />
-          </label>
+          <!-- Floating Interactive Telemetry Badges -->
+          <div class="organ-telemetry-badge badge-heart">
+            <span class="telemetry-badge-dot"></span>
+            <div class="telemetry-badge-copy">
+              <strong>Heart</strong>
+              <small>4–6 Hour Critical Window</small>
+            </div>
+          </div>
 
-          <label class="field">
-            <span class="field-label">Name of person who knows your decision</span>
-            <input type="text" name="contactName" required />
-          </label>
+          <div class="organ-telemetry-badge badge-kidneys">
+            <span class="telemetry-badge-dot"></span>
+            <div class="telemetry-badge-copy">
+              <strong>Kidneys</strong>
+              <small>2 Patients Freed From Dialysis</small>
+            </div>
+          </div>
 
-          <label class="field">
-            <span class="field-label">Contact number of the above person</span>
-            <input type="tel" name="contactNumber" inputmode="tel" required />
-          </label>
+          <div class="organ-telemetry-badge badge-lungs">
+            <span class="telemetry-badge-dot"></span>
+            <div class="telemetry-badge-copy">
+              <strong>Lungs</strong>
+              <small>Vital Pulmonary Respiration</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <fieldset class="field consent">
-            <legend class="field-label">Conforme</legend>
-            <label class="consent-line">
-              <input type="radio" name="conforme"
-                     value="I confirm that I have had a conversation with my family so that they know that I want them to support my organ donation decision"
-                     required />
-              <span>I confirm that I have had a conversation with my family so that they know that I want them to support my organ donation decision.</span>
-            </label>
-          </fieldset>
+    <!-- SECTION 2: 3D ORGAN IMPACT MATRIX -->
+    <section class="impact-section" id="matrix" data-reveal>
+      <div class="section-header">
+        <span class="section-kicker">3D Anatomical Telemetry</span>
+        <h2 class="section-title">One Decision. Boundless Futures.</h2>
+        <p class="section-subtitle">
+          Every organ transplant carries an immediate second chance at life. Explore the vital organs made possible through voluntary organ donation.
+        </p>
+      </div>
+
+      <div class="organ-matrix-grid">
+        <!-- 3D Heart -->
+        <article class="organ-card">
+          <div class="organ-card-3d-thumb">
+            <img src="media/3d-heart.jpg" alt="3D Anatomical Heart" loading="lazy" />
+          </div>
+          <h3 class="organ-card-title">Heart</h3>
+          <p class="organ-card-desc">Restores circulatory life to patients suffering from end-stage cardiomyopathy and heart failure.</p>
+          <div class="organ-card-stat">
+            <span>Critical Window</span>
+            <strong>4–6 Hours</strong>
+          </div>
+        </article>
+
+        <!-- 3D Kidneys -->
+        <article class="organ-card">
+          <div class="organ-card-3d-thumb">
+            <img src="media/3d-kidneys.jpg" alt="3D Anatomical Kidneys" loading="lazy" />
+          </div>
+          <h3 class="organ-card-title">Kidneys</h3>
+          <p class="organ-card-desc">Frees two individuals permanently from exhausting dialysis cycles, restoring independence and health.</p>
+          <div class="organ-card-stat">
+            <span>Recipients</span>
+            <strong>2 Patients Saved</strong>
+          </div>
+        </article>
+
+        <!-- 3D Lungs -->
+        <article class="organ-card">
+          <div class="organ-card-3d-thumb">
+            <img src="media/3d-lungs.jpg" alt="3D Anatomical Lungs" loading="lazy" />
+          </div>
+          <h3 class="organ-card-title">Lungs</h3>
+          <p class="organ-card-desc">Gives breath back to patients battling severe pulmonary fibrosis, cystic fibrosis, and advanced COPD.</p>
+          <div class="organ-card-stat">
+            <span>Impact</span>
+            <strong>2 Lungs = 2 Lives</strong>
+          </div>
+        </article>
+
+        <!-- 3D Liver -->
+        <article class="organ-card">
+          <div class="organ-card-3d-thumb">
+            <img src="media/3d-liver.jpg" alt="3D Anatomical Liver" loading="lazy" />
+          </div>
+          <h3 class="organ-card-title">Liver</h3>
+          <p class="organ-card-desc">A single donor liver can be split to save both an adult and a pediatric patient facing acute liver failure.</p>
+          <div class="organ-card-stat">
+            <span>Regenerative</span>
+            <strong>Up to 2 Recipients</strong>
+          </div>
+        </article>
+
+        <!-- 3D Cornea -->
+        <article class="organ-card">
+          <div class="organ-card-3d-thumb">
+            <img src="media/3d-cornea.jpg" alt="3D Anatomical Cornea & Eye" loading="lazy" />
+          </div>
+          <h3 class="organ-card-title">Corneas</h3>
+          <p class="organ-card-desc">Restores the precious gift of sight to individuals living in darkness due to corneal blindness or trauma.</p>
+          <div class="organ-card-stat">
+            <span>Sight Restored</span>
+            <strong>2 Patients Healed</strong>
+          </div>
+        </article>
+
+        <!-- Tissue -->
+        <article class="organ-card organ-card-tissue">
+          <div class="organ-card-icon-wrap">&#10047;</div>
+          <h3 class="organ-card-title">Bone &amp; Skin Tissue</h3>
+          <p class="organ-card-desc">Treats severe burn survivors, prevents limb amputations, and rebuilds skeletal structural integrity.</p>
+          <div class="organ-card-stat">
+            <span>Tissue Impact</span>
+            <strong>50+ Beneficiaries</strong>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 3: THE DONOR PLEDGE STUDIO & RE-DESIGNED HOLOGRAPHIC CARD -->
+    <section class="pledge-studio-section" id="studio">
+      <div class="studio-container">
+        <div class="section-header" data-reveal>
+          <span class="section-kicker">Interactive Pledge Suite</span>
+          <h2 class="section-title">Sign Up &amp; Generate Your Donor Card</h2>
+          <p class="section-subtitle">
+            Complete your pledge below. Your official digital Organ Donor Card updates dynamically in real time and can be saved to your device.
+          </p>
         </div>
 
-        <button type="submit" id="submit-btn" class="btn btn-primary btn-block">Sign up as a donor</button>
-        <p class="form-foot">A heart given is a life returned.</p>
-      </form>
+        <div class="studio-grid">
+          <!-- LEFT COLUMN: The Interactive Form Glass Deck -->
+          <div class="form-glass-deck" data-reveal>
+            <form id="donor-form" method="POST" target="gform_target" novalidate>
+              <!-- STEP 1: Personal Telemetry -->
+              <div class="form-step-block">
+                <h3 class="form-step-title">
+                  <span class="step-pill">1</span>
+                  <span>Donor Identification</span>
+                </h3>
 
-      <!-- Thank-you state (shown after submit) -->
-      <div id="thank-you" class="thank-you glass-card" hidden>
-        <span class="ty-mark" aria-hidden="true">♥</span>
-        <h2 class="display">Thank you for choosing life.</h2>
-        <p>Your decision has been recorded with SHARE OTSU. Please take a moment to tell your family — it's the final, most important step.</p>
-        <a href="#top" class="btn btn-ghost">Back to top</a>
+                <div class="form-group">
+                  <label class="form-label" for="fullName">
+                    <span>Full Legal Name</span>
+                    <small>First, Middle, Last</small>
+                  </label>
+                  <input type="text" id="fullName" name="fullName" class="form-control" placeholder="e.g. Maria Santos Dela Cruz" autocomplete="name" required />
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="birthday">Date of Birth</label>
+                    <input type="date" id="birthday" name="birthday" class="form-control" required />
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Biological Sex</label>
+                    <div class="radio-chips">
+                      <label class="radio-chip">
+                        <input type="radio" name="sex" value="Male" required />
+                        <span>Male</span>
+                      </label>
+                      <label class="radio-chip">
+                        <input type="radio" name="sex" value="Female" />
+                        <span>Female</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="bloodType">Blood Type</label>
+                    <select id="bloodType" class="form-control">
+                      <option value="O+">O Positive (O+)</option>
+                      <option value="O-">O Negative (O-)</option>
+                      <option value="A+">A Positive (A+)</option>
+                      <option value="A-">A Negative (A-)</option>
+                      <option value="B+">B Positive (B+)</option>
+                      <option value="B-">B Negative (B-)</option>
+                      <option value="AB+">AB Positive (AB+)</option>
+                      <option value="AB-">AB Negative (AB-)</option>
+                      <option value="Unknown">Not Sure / To Be Tested</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="mobile">Mobile Number</label>
+                    <input type="tel" id="mobile" name="mobile" class="form-control" placeholder="09XX-XXX-XXXX" inputmode="tel" autocomplete="tel" required />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="address">Residential Address</label>
+                  <input type="text" id="address" name="address" class="form-control" placeholder="City, Province, Philippines" autocomplete="street-address" required />
+                </div>
+              </div>
+
+              <!-- STEP 2: Organ Selection -->
+              <div class="form-step-block">
+                <h3 class="form-step-title">
+                  <span class="step-pill">2</span>
+                  <span>Gift of Life Specification</span>
+                </h3>
+
+                <div class="form-group" id="organs-group">
+                  <label class="form-label">
+                    <span>Organs &amp; Tissues You Wish To Donate:</span>
+                    <small>Select all that apply</small>
+                  </label>
+
+                  <div class="organ-check-grid">
+                    <label class="organ-check-item">
+                      <input type="checkbox" name="organs" value="Heart" checked />
+                      <span>&#10084; Heart</span>
+                    </label>
+                    <label class="organ-check-item">
+                      <input type="checkbox" name="organs" value="Kidneys" checked />
+                      <span>&#10042; Kidneys</span>
+                    </label>
+                    <label class="organ-check-item">
+                      <input type="checkbox" name="organs" value="Liver" checked />
+                      <span>&#10022; Liver</span>
+                    </label>
+                    <label class="organ-check-item">
+                      <input type="checkbox" name="organs" value="Lungs" checked />
+                      <span>&#9729; Lungs</span>
+                    </label>
+                    <label class="organ-check-item">
+                      <input type="checkbox" name="organs" value="Pancreas" checked />
+                      <span>&#9881; Pancreas</span>
+                    </label>
+                    <label class="organ-check-item">
+                      <input type="checkbox" name="organs" value="Corneas" checked />
+                      <span>&#10038; Corneas</span>
+                    </label>
+                    <label class="organ-check-item">
+                      <input type="checkbox" name="organs" value="Bones" />
+                      <span>&#9776; Bones</span>
+                    </label>
+                    <label class="organ-check-item">
+                      <input type="checkbox" name="organs" value="Skin" />
+                      <span>&#9638; Skin</span>
+                    </label>
+                    <label class="organ-check-item">
+                      <input type="checkbox" name="organs" value="Eyes" />
+                      <span>&#9673; Eyes</span>
+                    </label>
+
+                    <label class="organ-check-item item-all">
+                      <input type="checkbox" id="all-organs" name="organs" value="All organs and tissues to be used for transplantation, research, or education" />
+                      <span>&#10024; Donate All Organs &amp; Tissues (Transplantation, Research &amp; Education)</span>
+                    </label>
+                  </div>
+                  <p id="organs-error" style="color: var(--crimson-pulse); font-size: 0.85rem; margin-top: 8px;" hidden>Please select at least one organ or tissue.</p>
+                </div>
+              </div>
+
+              <!-- STEP 3: Emergency Contact & Legal Conforme -->
+              <div class="form-step-block">
+                <h3 class="form-step-title">
+                  <span class="step-pill">3</span>
+                  <span>Contact Notification &amp; Consent</span>
+                </h3>
+
+                <div class="form-group">
+                  <label class="form-label" for="email">Email Address</label>
+                  <input type="email" id="email" name="email" class="form-control" placeholder="name@domain.com" autocomplete="email" required />
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="contactName">Family Contact Person</label>
+                    <input type="text" id="contactName" name="contactName" class="form-control" placeholder="Relative who knows decision" required />
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="contactNumber">Their Mobile Number</label>
+                    <input type="tel" id="contactNumber" name="contactNumber" class="form-control" placeholder="09XX-XXX-XXXX" inputmode="tel" required />
+                  </div>
+                </div>
+
+                <div class="conforme-box">
+                  <label class="conforme-label">
+                    <input type="checkbox" name="conforme" value="I confirm that I have had a conversation with my family so that they know that I want them to support my organ donation decision" required />
+                    <span><strong>Legal Conforme (RA 7170):</strong> I confirm that I have communicated with my family so that they know and will honor my decision to become a registered organ donor upon clinical death.</span>
+                  </label>
+                </div>
+              </div>
+
+              <button type="submit" id="submit-btn" class="btn btn-primary" style="width: 100%; min-height: 56px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <span>Confirm Pledge &amp; Register</span>
+              </button>
+            </form>
+
+            <!-- Thank-You State after submission -->
+            <div id="thank-you" class="thank-you-view" hidden>
+              <div class="ty-celebration-badge">&#10084;</div>
+              <h2 class="ty-title">Pledge Successfully Registered</h2>
+              <p class="ty-body">
+                Thank you for your noble decision. Your pledge is officially recorded with the SHARE OTSU Registry at Southern Philippines Medical Center.
+              </p>
+              <div class="ty-actions">
+                <button type="button" class="btn btn-primary" id="btn-save-card-thankyou">Download Digital Donor Card</button>
+                <a href="#top" class="btn btn-secondary">Return To Top</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: THE REDESIGNED LUXURY HOLOGRAPHIC CREDENTIAL CARD -->
+          <div class="card-preview-sticky" data-reveal>
+            <div class="preview-badge-header">
+              <span class="preview-kicker">Official Digital Credential</span>
+              <span class="preview-hint">3D Holographic Gyro Surface</span>
+            </div>
+
+            <div class="hologram-card-stage">
+              <div class="luxury-credential-card" id="digital-donor-card">
+                <!-- Dynamic Prismatic Hologram & Foil Overlays -->
+                <div class="card-prismatic-foil"></div>
+                <div class="card-guilloche-bg"></div>
+                <div class="card-gold-bezel"></div>
+
+                <!-- Card Top: Header Ribbon & Insignias -->
+                <div class="cred-top-row">
+                  <div class="cred-insignias">
+                    <img src="assets/doh_logo.png" alt="DOH" class="cred-logo" />
+                    <img src="assets/spmc_logo.png" alt="SPMC" class="cred-logo" />
+                    <img src="assets/share_logo.png" alt="SHARE" class="cred-logo" />
+                  </div>
+                  <div class="cred-header-meta">
+                    <span class="cred-country">REPUBLIC OF THE PHILIPPINES</span>
+                    <span class="cred-unit">SPMC · SHARE OTSU REGISTRY</span>
+                    <span class="cred-serial" id="card-id-display">PH-SPMC-2026-8842</span>
+                  </div>
+                </div>
+
+                <!-- Card Middle: 3D EMV Chip, NFC Pulse & Embossed Name -->
+                <div class="cred-middle-row">
+                  <div class="cred-tech-strip">
+                    <!-- 3D Metallic EMV Security Chip -->
+                    <div class="emv-chip">
+                      <div class="chip-line line-1"></div>
+                      <div class="chip-line line-2"></div>
+                      <div class="chip-line line-3"></div>
+                    </div>
+                    <!-- Contactless Bio-Pulse Symbol -->
+                    <svg class="contactless-symbol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M8.5 16.5a5 5 0 0 1 0-7"></path>
+                      <path d="M12 19a8.5 8.5 0 0 1 0-12"></path>
+                      <path d="M15.5 21.5a12 12 0 0 1 0-17"></path>
+                    </svg>
+                  </div>
+
+                  <!-- Raised 3D Embossed Gold Typography -->
+                  <div class="cred-donor-block">
+                    <span class="cred-field-label">CERTIFIED ORGAN DONOR</span>
+                    <div class="cred-embossed-name" id="card-name-display">JUAN DELA CRUZ</div>
+                  </div>
+
+                  <div class="cred-status-row">
+                    <div class="cred-badge-status">
+                      <span class="status-dot"></span>
+                      <span>ACTIVE PLEDGE · RA 7170</span>
+                    </div>
+                    <div class="cred-blood-pill">
+                      <span>BLOOD:</span>
+                      <strong id="card-blood-display">O+</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card Bottom: Pledged Gifts & Security QR Seal -->
+                <div class="cred-bottom-row">
+                  <div class="cred-organs-box">
+                    <span class="cred-field-label">PLEDGED GIFTS:</span>
+                    <span class="cred-organs-text" id="card-organs-display">Heart, Kidneys, Liver, Lungs, Corneas</span>
+                  </div>
+
+                  <div class="cred-qr-seal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#040914" stroke-width="2.2">
+                      <rect x="2" y="2" width="8" height="8" rx="1"></rect>
+                      <rect x="14" y="2" width="8" height="8" rx="1"></rect>
+                      <rect x="2" y="14" width="8" height="8" rx="1"></rect>
+                      <path d="M14 14h2v2h-2zM18 14h4v4h-4zM14 18h2v4h-2zM18 20h4v2h-4z"></path>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Official Security Hologram Watermark Seal -->
+                <div class="cred-hologram-watermark">SHARE OTSU</div>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-download-card" id="btn-download-card">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Download Digital Donor Card (PNG)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: THE 3-STEP LIFE PATHWAY -->
+    <section class="pathway-section" id="pathway" data-reveal>
+      <div class="section-header">
+        <span class="section-kicker">Clinical &amp; Legal Framework</span>
+        <h2 class="section-title">The Three Quiet Steps</h2>
+        <p class="section-subtitle">
+          How organ donation functions under Philippine law and Southern Philippines Medical Center protocols.
+        </p>
+      </div>
+
+      <div class="pathway-grid">
+        <article class="pathway-step-card">
+          <div class="step-num-badge">01</div>
+          <h3 class="pathway-step-title">Pledge Decision</h3>
+          <p class="pathway-step-desc">
+            You register your wish through this official SPMC registry, defining the organs and tissues you are willing to give.
+          </p>
+        </article>
+
+        <article class="pathway-step-card">
+          <div class="step-num-badge">02</div>
+          <h3 class="pathway-step-title">Inform Family</h3>
+          <p class="pathway-step-desc">
+            Communicate your decision with your loved ones. Under Philippine practice, family consent affirms and honors your final wish.
+          </p>
+        </article>
+
+        <article class="pathway-step-card">
+          <div class="step-num-badge">03</div>
+          <h3 class="pathway-step-title">Gift of Life</h3>
+          <p class="pathway-step-desc">
+            In the event of clinical brain death, the SHARE OTSU transplant surgical team recovers organs with utmost medical honor and reverence.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 5: FREQUENTLY ADDRESSED QUESTIONS -->
+    <section class="faq-section" id="faq" data-reveal>
+      <div class="section-header">
+        <span class="section-kicker">Medical Clarity &amp; Reassurance</span>
+        <h2 class="section-title">Frequently Addressed Questions</h2>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary class="faq-trigger">
+            <span>Does being a donor affect the emergency medical care I receive?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-body">
+            No. The medical team treating you in emergency or intensive care is completely separate from the transplant team. Physicians do everything humanly possible to save your life first. Organ donation is only ever evaluated after clinical brain death has occurred.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-trigger">
+            <span>Does registering cost anything for me or my family?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-body">
+            Never. Registering is 100% free. Any medical procedures related to organ retrieval and donation are entirely covered by the organ donation and transplant program, never billed to the donor's family.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-trigger">
+            <span>What do major world religions say about organ donation?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-body">
+            All major faiths (Catholicism, Protestantism, Islam, Buddhism) view organ donation as a profound act of charity, altruism, and brotherly love.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-trigger">
+            <span>Can I change or withdraw my pledge in the future?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-body">
+            Yes. Your decision is strictly voluntary. You can update your pledge or request removal from the registry at any time by notifying the SHARE OTSU unit at SPMC.
+          </div>
+        </details>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="footer" data-reveal>
-    <div class="wave wave-top footer-wave" aria-hidden="true">
-      <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,56 C420,8 1020,120 1440,56 L1440,0 L0,0 Z"/></svg>
-    </div>
-    <div class="footer-inner">
-      <p class="footer-kicker">An initiative of</p>
-      <div class="logo-lockup">
-        <span class="logo-chip"><img src="assets/doh_logo.png" alt="Department of Health" /></span>
-        <span class="logo-chip"><img src="assets/spmc_logo.png" alt="Southern Philippines Medical Center" /></span>
-        <span class="logo-chip"><img src="assets/share_logo.png" alt="SHARE" /></span>
+  <!-- SITE FOOTER -->
+  <footer class="site-footer" data-reveal>
+    <div class="footer-container">
+      <div class="footer-top-row">
+        <div class="footer-brand-deck">
+          <div class="footer-insignias">
+            <img src="assets/doh_logo.png" alt="DOH" />
+            <img src="assets/spmc_logo.png" alt="SPMC" />
+            <img src="assets/share_logo.png" alt="SHARE" />
+          </div>
+          <p class="footer-tagline">
+            SHARE Organ Transplant Services Unit (OTSU)<br />
+            Southern Philippines Medical Center · Department of Health
+          </p>
+          <p class="footer-legal-notice">
+            Enacted under Republic Act No. 7170 (Organ Donation Act of 1991). Dedicated to saving Filipino lives through organ donation awareness and ethical retrieval.
+          </p>
+        </div>
+
+        <div class="footer-social-deck">
+          <span class="footer-deck-title">Official Inquiries &amp; Advocacy</span>
+          <a class="btn-social" href="https://www.facebook.com/SHAREOTSU" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+            <span>Connect on Facebook @SHAREOTSU</span>
+          </a>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">J.P. Laurel Avenue, Bajada, Davao City, Philippines</span>
+        </div>
       </div>
-      <p class="footer-name">SHARE Organ Transplant Services Unit</p>
-      <p class="footer-sub">Southern Philippines Medical Center · Department of Health · Davao City, Philippines</p>
-      <a class="btn-contact" href="https://www.facebook.com/SHAREOTSU" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
-        Contact us on Facebook
-      </a>
-      <p class="footer-fine">Organ donation is free and voluntary. © 2026 SHARE OTSU.</p>
+
+      <div class="footer-bottom-bar">
+        <span>&copy; 2026 SHARE OTSU · Southern Philippines Medical Center. All rights reserved.</span>
+        <span>A heart given is a life returned.</span>
+      </div>
     </div>
   </footer>
 
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=8"></script>
 </body>
 </html>
