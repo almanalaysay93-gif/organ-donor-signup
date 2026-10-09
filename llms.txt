@@ -15,8 +15,8 @@
 - Religious Stance: Major world religions (Catholicism, Protestantism, Islam, Buddhism) affirm organ donation as an altruistic act of love and mercy.
 
 ## Available Actions
-- Register as an organ donor: Select specific organs (Heart, Kidneys, Liver, Lungs, Pancreas, Corneas, Bones, Skin) or all organs and tissues.
-- Digital Donor Card: Generates an immediate downloadable digital verification card with official SPMC & SHARE OTSU credentials.
+- Register as an organ donor: Select specific organs (Heart, Lungs, Liver, Kidneys, Pancreas, Bones, Eyes, Skin) or all organs and tissues.
+- Digital Donor Card: Fills the official SHARE OTSU donor card (front and back) with the donor's name, blood type, next of kin, contact number, and chosen organs, and saves it as a PNG.
 - Family Communication: Mandates legal notification to ensure next-of-kin honor the donor's wishes.
 
 ## Contact & Location

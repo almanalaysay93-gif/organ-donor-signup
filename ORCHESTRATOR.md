@@ -39,3 +39,30 @@
   - `3d-liver.jpg`: 3D anatomical liver with microvascular networks.
   - `3d-cornea.jpg`: 3D anatomical eye and cornea with crystalline optical lens.
   - `organ-bg-loop.mp4`: Bespoke 60fps 6.0s seamless loop generated via HyperFrames.
+
+---
+
+## Checkpoint 2026-10-09 — Donor card theme and one organ per screen (v5)
+
+### Brief
+- Replace the images with a 3D parallax design, one organ per screen, that shows the people helped and the conditions treated.
+- Use the color scheme of the printed donor card (`D:\Downloads\Copy of donor card otsu`).
+- Use the printed card as the digital donor card.
+
+### Decisions
+- D1: New organ renders in one green-on-white style. Five come from the v4 renders and three (pancreas, bones, skin) are new.
+- D2: Eight scenes, in the card checklist order.
+- D3: One light theme. The dark theme and the theme toggle are removed.
+- D4: The digital card uses the two printed card faces with the form data on top.
+
+### Evidence
+- Chrome headless at 1440 x 900 and 390 x 844: no horizontal overflow at 320, 390, 768, 1024, 1440, and 1920 px.
+- Scene `--p` is -0.56, 0, and 0.56 at scroll offsets -500, 0, and 500 px. The organ transform changes with it.
+- Each card check mark is 0.0 px from the center of its printed box at both sizes.
+- The loop seam PSNR (35.8 dB) equals the adjacent-frame PSNR (36.3 dB).
+- The only console error is a missing `favicon.ico`, which v4 also did not have.
+
+### Open
+- The people-helped numbers for bones (10+) and skin (20+) come from v4 and have no clinical sign-off.
+- The condition lists are new and have no clinical sign-off.
+- A live form submission was not sent in this session.

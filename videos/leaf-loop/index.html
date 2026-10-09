@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Donor Card Leaves — 3D Parallax Loop</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #ffffff; }
+      #stage {
+        position: relative; width: 1920px; height: 1080px; overflow: hidden;
+        background: radial-gradient(58% 54% at 74% 46%, #e6ecdd 0%, #ffffff 72%);
+        perspective: 1400px; perspective-origin: 30% 50%;
+      }
+      /* The camera rig drifts. Each plane sits at its own Z, so the planes shift against each other. */
+      #rig { position: absolute; inset: 0; transform-style: preserve-3d; }
+      .plane { position: absolute; left: 0; top: 0; transform-style: preserve-3d; }
+      .plane img { position: absolute; left: 0; transform-origin: 0% 45%; display: block; }
+      #far  { transform: translate3d(-330px, -200px, -520px) scale(1.95); opacity: 0.3; filter: blur(7px); }
+      #mid  { transform: translate3d(-150px, -90px, -120px) scale(1.08); filter: drop-shadow(18px 22px 18px rgba(13, 59, 33, 0.14)); }
+      #near { transform: translate3d(-330px, 150px, 260px); filter: blur(2.5px) drop-shadow(30px 34px 26px rgba(13, 59, 33, 0.2)); }
+      .speck { position: absolute; border-radius: 60% 0 60% 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="8" data-width="1920" data-height="1080">
+      <div id="stage" class="clip" data-start="0" data-duration="8" data-track-index="0">
+        <div id="rig">
+          <div class="plane" id="far">
+            <img class="sway" data-amp="5" src="assets/leaf-c.webp" style="top: 0; height: 470px" alt="" />
+            <img class="sway" data-amp="-6" src="assets/leaf-a.webp" style="top: 330px; height: 490px" alt="" />
+            <img class="sway" data-amp="5" src="assets/leaf-b.webp" style="top: 700px; height: 510px" alt="" />
+          </div>
+          <div class="plane" id="mid">
+            <img class="sway" data-amp="-9" src="assets/leaf-a.webp" style="top: 0; height: 500px" alt="" />
+            <img class="sway" data-amp="10" src="assets/leaf-b.webp" style="top: 389px; height: 518px" alt="" />
+            <img class="sway" data-amp="-8" src="assets/leaf-c.webp" style="top: 796px; height: 481px" alt="" />
+          </div>
+          <div class="plane" id="near">
+            <img class="sway" data-amp="14" src="assets/leaf-b.webp" style="top: -260px; height: 560px" alt="" />
+            <img class="sway" data-amp="-15" src="assets/leaf-c.webp" style="top: 560px; height: 620px" alt="" />
+          </div>
+          <div id="specks"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Seamless 8-second loop: every tween returns to its start value at t = 8.
+      const DURATION = 8;
+      const tl = gsap.timeline({ paused: true });
+
+      // Camera drift: one slow side-to-side pass. The Z spread of the planes turns it into parallax.
+      tl.fromTo("#rig", { x: -46, rotationY: -3.2, rotationX: 0.8 },
+        { x: 46, rotationY: 3.2, rotationX: -0.8, duration: DURATION / 2, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+
+      // Each branch turns about its stem edge. Alternate signs so neighbours move against each other.
+      document.querySelectorAll(".sway").forEach(function (el, i) {
+        const amp = parseFloat(el.dataset.amp);
+        tl.fromTo(el, { rotationY: -amp, rotation: -amp * 0.22 },
+          { rotationY: amp, rotation: amp * 0.22, duration: DURATION / 2, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+        // A faster flutter, two full cycles per loop.
+        tl.fromTo(el, { skewY: -amp * 0.07 },
+          { skewY: amp * 0.07, duration: DURATION / 4, ease: "sine.inOut", yoyo: true, repeat: 3 }, 0);
+      });
+
+      // A few loose leaves fall through the planes. Seeded, and each falls exactly one wrap per loop.
+      let seed = 7170;
+      function rand() { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; }
+      const COLORS = ["#cdd8be", "#8fa77f", "#658058", "#d9d98f", "#b9c9a6"];
+      const specks = document.getElementById("specks");
+      const WRAP = 1500;
+      for (let i = 0; i < 16; i++) {
+        const el = document.createElement("div");
+        const z = -400 + rand() * 700;                 // far to near
+        const size = 22 + rand() * 30;
+        const y0 = rand() * WRAP;
+        el.className = "speck";
+        el.style.cssText = "width:" + size + "px;height:" + size * 1.7 + "px;left:" + (500 + rand() * 1350) + "px;top:-200px;" +
+          "background:" + COLORS[Math.floor(rand() * COLORS.length)] + ";opacity:" + (0.28 + (z + 400) / 700 * 0.4).toFixed(2) + ";" +
+          "filter:blur(" + (Math.abs(z) / 110).toFixed(1) + "px)";
+        specks.appendChild(el);
+        const sway = 40 + rand() * 70;
+        const turns = (rand() > 0.5 ? 1 : -1) * 360;
+        const state = { t: 0 };
+        tl.to(state, {
+          t: 1, duration: DURATION, ease: "none",
+          onUpdate: function () {
+            const a = state.t * Math.PI * 2;
+            const y = (y0 + WRAP * state.t) % WRAP;
+            gsap.set(el, { x: Math.sin(a + i) * sway, y: y, z: z, rotation: turns * state.t + i * 40, rotationX: 60 * Math.sin(a * 2 + i) });
+          }
+        }, 0);
+      }
+
+      tl.seek(0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

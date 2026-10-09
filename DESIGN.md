@@ -1,53 +1,59 @@
-# DESIGN SPECIFICATION — OBSIDIAN GOLD MEDICAL LUXURY (v4)
+# DESIGN SPECIFICATION — DONOR CARD GREEN (v5)
 
-## 1. Aesthetic Direction: Obsidian Royal Medical
-The design bridges emotional dignity with high-technology clinical authority. Instead of generic pastel clinic tropes or cookie-cutter SaaS templates, the portal uses deep obsidian darkness pierced by radiant gold light and subtle biometric crimson pulses.
+## 1. Direction
 
-## 2. Design Tokens & Palette
+The printed SHARE OTSU donor card is the design reference.
+The site uses the card colors, the card leaf art, and the card typography weight.
+The site has one light theme.
+The obsidian and gold theme of v4 is removed.
 
-### Base Canvas & Surfaces
-- `--bg-void`: `#030712` (deepest black-blue)
-- `--bg-obsidian`: `#060d1a` (stage background)
-- `--bg-surface`: `rgba(8, 20, 38, 0.72)` (glass deck)
-- `--bg-surface-elevated`: `rgba(14, 30, 56, 0.85)`
-- `--border-subtle`: `rgba(201, 162, 59, 0.16)`
-- `--border-gold`: `rgba(201, 162, 59, 0.45)`
-- `--border-gold-glow`: `rgba(244, 211, 129, 0.6)`
+## 2. Tokens
 
-### Metallic Gold Accents & Highlights
-- `--gold-deep`: `#8c6a1d`
-- `--gold-primary`: `#c9a23b`
-- `--gold-light`: `#f4d381`
-- `--gold-gradient`: `linear-gradient(135deg, #8c6a1d 0%, #c9a23b 35%, #f7e7b4 50%, #c9a23b 70%, #8c6a1d 100%)`
-- `--gold-text-grad`: `linear-gradient(135deg, #ffffff 0%, #f4d381 40%, #c9a23b 100%)`
+### Color
 
-### Clinical Life-Signs
-- `--crimson-pulse`: `#e63946`
-- `--crimson-glow`: `rgba(230, 57, 70, 0.4)`
-- `--cyan-clinical`: `#2dd4bf`
+- `--green`: `#008037` (card title green, primary action).
+- `--green-deep`: `#00612a` (hover, links).
+- `--green-ink`: `#0d3b21` (dark text on the card, footer background).
+- `--sage`: `#cdd8be` (card ribbon, large numerals, borders).
+- `--sage-soft`: `#e6ecdd` (soft fills).
+- `--leaf`: `#658058` (leaf mid tone).
+- `--mist`: `#f4f8ef` (alternate section background).
+- `--paper`: `#ffffff` (page background).
+- `--ink`: `#16261b`, `--text`: `#33443a`, `--muted`: `#55655a` (text).
 
-### Typography Hierarchy
-- **Display Serif**: `"Fraunces", Georgia, serif` (9..144 variable optical size, dignified and human)
-- **Interface Sans**: `"Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`
-- **Clinical Telemetry**: `"Space Mono", "JetBrains Mono", monospace`
+### Type
 
-## 3. 3D Parallax Architecture & Aggressive Motion Rules
-1. **Multi-Plane Stage**:
-   - `Layer -2`: HyperFrames video loops (`hero-loop.mp4`, `flow-loop.mp4`) at 35% opacity with vignette blend.
-   - `Layer -1`: Atmospheric glowing nebulas and gold light rays (`lens.webp`).
-   - `Layer 0`: Floating 3D anatomical organ cutouts (`kidneys.webp`, `bloodwave.webp`) with parallax Z-axis displacement (`translateZ(40px)`) and subtle floating oscillation.
-   - `Layer 1`: Primary glass content cards and interactive controls with high z-index clarity.
-2. **Interactive Cursor/Gyro 3D Tilt**:
-   - Hero and Donor Card elements calculate cursor offset and apply smooth spring-damped `rotateX()`, `rotateY()`, and radial spotlight reflections.
-3. **Scroll-Bound Parallax Transforms**:
-   - Scroll listener smoothly translates parallax layers at differential velocities (0.08x, 0.22x, 0.45x).
-4. **Aggressive Animation Choreography**:
-   - EKG heartbeat rhythm pulse in the gold divider ribbons.
-   - Fluid gold shimmer sweeps across CTA buttons on hover.
-   - Live holographic card render reacting in real time to input changes.
-   - Staggered entrance animations with cubic-bezier spring curves `cubic-bezier(0.16, 1, 0.3, 1)`.
+- Display: `Archivo`, width 125, weight 900, uppercase. It matches the "DONOR CARD" title.
+- Body: `Albert Sans`.
 
-## 4. Accessibility & Anti-Slop Discipline
-- Contrast ratio >= 4.5:1 for all body text (`#e2e8f0` on obsidian).
-- All interactive controls have min 48px touch targets.
-- Full `@media (prefers-reduced-motion: reduce)` support: disables aggressive translations while keeping atmospheric opacity transitions.
+## 3. Images
+
+- `media/organs/*.webp`: eight organ renders, one for each organ on the card.
+- Each render is a green-on-transparent conversion of a 3D glass render.
+- `media/leaf-a.webp`, `leaf-b.webp`, `leaf-c.webp`: three parts of the leaf strip of the card front, with a transparent background.
+- `assets/card-front.png` and `assets/card-back.png`: the printed card faces, not changed.
+
+## 4. Parallax
+
+- Each organ has one section of one screen height (`.scene`).
+- `script.js` writes `--p` on each visible scene: -1 below the screen, 0 at the center, 1 above.
+- `script.js` writes `--mx` and `--my` on the root from the pointer position.
+- Each layer has a depth `--d`. The far leaves are 0.5, the organ is 0.45, the mid leaves are 1.3, and the near leaves are 2.6.
+- The near leaves are in front of the organ. The far leaves and the near leaves have blur.
+- Each leaf image sways about its stem edge.
+- The organ also turns on the X and Y axes with `--p`, `--mx`, and `--my`.
+- The hero background is a HyperFrames loop of the same leaves on three Z planes with a camera that drifts. The source is `videos/leaf-loop`. The web file is `media/leaf-loop.mp4`.
+- The header is a glass bar: a translucent white fill, a 22 px backdrop blur, and a light border.
+
+## 5. Digital donor card
+
+- The card shows the two printed faces and turns between them in 3D.
+- `script.js` holds the positions of the text lines and the checkboxes in card pixels (854 x 480).
+- The live card and the PNG export read the same positions.
+- The signature line stays empty.
+
+## 6. Accessibility
+
+- Body text contrast is 4.5:1 or more on white and on mist.
+- Each control is 44 px or more in height.
+- `prefers-reduced-motion` stops the parallax, the loop, and the entrance motion.

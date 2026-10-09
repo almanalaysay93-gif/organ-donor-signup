@@ -7,3 +7,6 @@ _*.json
 .DS_Store
 Thumbs.db
 *.log
+
+# HyperFrames render output
+videos/*/renders/

@@ -10,20 +10,19 @@
 - **Secondary**: Transplant coordinators, hospital staff, and donor family members who share and verify pledge commitments.
 
 ## 3. Key Functional Deliverables
-1. **Cinematic 3D Parallax Landing Experience**:
-   - Aggressive multi-layer parallax stage featuring HyperFrames ambient motion loops (`hero-loop.mp4`, `flow-loop.mp4`).
-   - Floating 3D organ cutouts (`kidney.webp`, `kidneys.webp`, `bloodwave.webp`, `lens.webp`) responding dynamically to scroll and mouse gyro tilt.
-2. **Interactive Organ Pledge Suite**:
-   - Granular organ & tissue checklist (Kidneys, Liver, Heart, Lungs, Pancreas, Corneas, Bone/Tissue, or "All Organs").
-   - Transparent legal conforme based on Republic Act No. 7170 (Organ Donation Act of 1991).
-   - Frictionless Google Apps Script endpoint submission (`fetch` with fallback).
-3. **Live Digital Donor Card Generator**:
-   - Real-time canvas/HTML card render updating as user types their name, blood type, and emergency contacts.
-   - Holographic gold seal with SPMC/SHARE OTSU insignias.
-   - One-click instant PNG export for wallet/mobile storage.
-4. **Educational Impact Telemetry**:
-   - Interactive impact counter: 1 donor = 8 major organs + 50+ tissue beneficiaries.
-   - 3-step procedural pathway: Pledge -> Inform Family -> Save Lives.
+1. **One Organ per Screen**:
+   - Eight full-screen parallax scenes: heart, lungs, liver, kidneys, pancreas, bones, eyes, skin.
+   - Each scene shows the number of people the organ can help and the conditions it treats.
+   - The hero background is a HyperFrames loop (`media/leaf-loop.mp4`).
+2. **Sign-up Form**:
+   - Organ and tissue checklist that matches the printed donor card, or "All organs and tissues".
+   - Conforme based on Republic Act No. 7170 (Organ Donation Act of 1991).
+   - Google Apps Script endpoint submission (`fetch` with fallback).
+3. **Digital Donor Card**:
+   - The printed SHARE OTSU donor card, front and back, filled from the form as the donor types.
+   - One PNG export with both faces. The signature line stays empty.
+4. **How It Works and FAQ**:
+   - Three steps: sign up, tell your family, give life.
 
 ## 4. Success Criteria
 - Submissions post reliably to Google Apps Script endpoint.

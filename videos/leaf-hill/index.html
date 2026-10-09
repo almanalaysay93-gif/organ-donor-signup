@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=640" />
+    <title>Leaf Hill: animals at play and a sweeper</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 640px; overflow: hidden; background: #ffffff; }
+      #stage { position: relative; width: 1920px; height: 640px; overflow: hidden; background: linear-gradient(#ffffff 0%, #f4f8ef 70%, #e6ecdd 100%); }
+      svg { position: absolute; inset: 0; width: 1920px; height: 640px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="8" data-width="1920" data-height="640">
+      <div id="stage" class="clip" data-start="0" data-duration="8" data-track-index="0">
+        <svg id="scene" viewBox="0 0 1920 640" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <path id="leaf" d="M0 -10 Q7 -2 0 10 Q-7 -2 0 -10 Z" />
+          </defs>
+
+          <!-- soft far hills -->
+          <path d="M0 600 C 300 500, 520 520, 760 600 Z" fill="#e6ecdd" />
+          <path d="M1240 600 C 1480 510, 1700 520, 1920 600 Z" fill="#e6ecdd" />
+
+          <g id="falling"></g>
+          <path id="hillBase" fill="#b9c9a6" />
+          <g id="hillBack"></g>
+
+          <!-- RABBIT: hops along the left slope -->
+          <g id="rabbit">
+            <g id="rabbitBody">
+              <ellipse cx="0" cy="-22" rx="30" ry="21" fill="#ece7dc" />
+              <circle cx="-28" cy="-24" r="9" fill="#ffffff" />
+              <ellipse cx="14" cy="-4" rx="13" ry="6" fill="#d8d1c2" />
+              <ellipse cx="-12" cy="-3" rx="15" ry="7" fill="#d8d1c2" />
+              <circle cx="27" cy="-42" r="16" fill="#ece7dc" />
+              <g id="rabbitEars">
+                <ellipse cx="20" cy="-72" rx="6" ry="20" fill="#ece7dc" transform="rotate(-10 20 -56)" />
+                <ellipse cx="20" cy="-72" rx="2.6" ry="13" fill="#e9b7b0" transform="rotate(-10 20 -56)" />
+                <ellipse cx="32" cy="-72" rx="6" ry="20" fill="#ece7dc" transform="rotate(8 32 -56)" />
+                <ellipse cx="32" cy="-72" rx="2.6" ry="13" fill="#e9b7b0" transform="rotate(8 32 -56)" />
+              </g>
+              <circle cx="33" cy="-45" r="2.6" fill="#16261b" />
+              <circle cx="42" cy="-39" r="2.2" fill="#e9b7b0" />
+            </g>
+          </g>
+
+          <!-- CAT: peeks out of the pile -->
+          <g id="cat">
+            <path id="catTail" d="M0 0 C 26 -30, 8 -62, 30 -86" fill="none" stroke="#8d968c" stroke-width="13" stroke-linecap="round" />
+            <g id="catHead">
+              <path d="M-27 -28 L-22 -62 L-4 -40 Z" fill="#8d968c" />
+              <path d="M27 -28 L22 -62 L4 -40 Z" fill="#8d968c" />
+              <path d="M-23 -34 L-21 -52 L-11 -40 Z" fill="#e9b7b0" />
+              <path d="M23 -34 L21 -52 L11 -40 Z" fill="#e9b7b0" />
+              <ellipse cx="0" cy="-18" rx="33" ry="27" fill="#8d968c" />
+              <ellipse cx="0" cy="-9" rx="17" ry="13" fill="#f2efe6" />
+              <g id="catEyes">
+                <ellipse cx="-13" cy="-24" rx="5.5" ry="7" fill="#008037" /><ellipse cx="-13" cy="-24" rx="1.8" ry="5.5" fill="#16261b" />
+                <ellipse cx="13" cy="-24" rx="5.5" ry="7" fill="#008037" /><ellipse cx="13" cy="-24" rx="1.8" ry="5.5" fill="#16261b" />
+              </g>
+              <path d="M-3 -13 L3 -13 L0 -9 Z" fill="#e9b7b0" />
+              <path d="M0 -9 Q-5 -3 -10 -7 M0 -9 Q5 -3 10 -7" fill="none" stroke="#55655a" stroke-width="1.6" stroke-linecap="round" />
+              <path d="M-18 -11 L-44 -15 M-18 -7 L-44 -4 M18 -11 L44 -15 M18 -7 L44 -4" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round" />
+            </g>
+            <ellipse id="catPawL" cx="-20" cy="4" rx="10" ry="7" fill="#f2efe6" />
+            <ellipse id="catPawR" cx="20" cy="4" rx="10" ry="7" fill="#f2efe6" />
+          </g>
+
+          <!-- DOG: jumps on the top of the hill -->
+          <g id="dog">
+            <g id="dogBody">
+              <path id="dogTail" d="M-42 -52 Q-66 -66 -62 -92" fill="none" stroke="#c98a4b" stroke-width="11" stroke-linecap="round" />
+              <rect id="dogLegB1" x="-38" y="-30" width="12" height="32" rx="6" fill="#b3763b" />
+              <rect id="dogLegF1" x="20" y="-30" width="12" height="32" rx="6" fill="#b3763b" />
+              <ellipse cx="0" cy="-42" rx="48" ry="26" fill="#c98a4b" />
+              <ellipse cx="6" cy="-32" rx="26" ry="13" fill="#e9c79a" />
+              <rect id="dogLegB2" x="-26" y="-28" width="12" height="32" rx="6" fill="#c98a4b" />
+              <rect id="dogLegF2" x="32" y="-28" width="12" height="32" rx="6" fill="#c98a4b" />
+              <g id="dogHead">
+                <circle cx="46" cy="-70" r="24" fill="#c98a4b" />
+                <ellipse cx="66" cy="-63" rx="16" ry="12" fill="#e9c79a" />
+                <circle cx="80" cy="-67" r="5" fill="#16261b" />
+                <circle cx="52" cy="-77" r="3.4" fill="#16261b" />
+                <path d="M62 -55 Q68 -44 74 -55 Z" fill="#e58d8d" />
+                <path id="dogEar" d="M30 -86 Q14 -84 16 -54 Q32 -58 40 -78 Z" fill="#8a5a2b" />
+              </g>
+            </g>
+          </g>
+          <g id="burst"></g>
+
+          <g id="hillFront"></g>
+
+          <!-- SWEEPER: stands at the foot of the hill and sweeps leaves toward it -->
+          <g id="swept"></g>
+          <g id="sweeper" transform="translate(1418 598)">
+            <ellipse cx="0" cy="2" rx="52" ry="7" fill="#0d3b21" opacity="0.14" />
+            <rect x="-17" y="-86" width="15" height="84" rx="7" fill="#0d3b21" />
+            <rect x="3" y="-86" width="15" height="84" rx="7" fill="#16402a" />
+            <path d="M-24 -4 h24 a6 6 0 0 1 0 12 h-30 a6 6 0 0 1 6 -12 Z" fill="#55655a" />
+            <path d="M-4 -4 h24 a6 6 0 0 1 0 12 h-30 a6 6 0 0 1 6 -12 Z" fill="#33443a" />
+            <g id="sweeperTop">
+              <rect x="-25" y="-176" width="50" height="98" rx="18" fill="#008037" />
+              <rect x="-25" y="-104" width="50" height="8" fill="#00612a" />
+              <circle cx="0" cy="-200" r="23" fill="#e2b48c" />
+              <circle cx="-9" cy="-202" r="2.6" fill="#16261b" />
+              <path d="M-14 -191 Q-8 -186 -2 -191" fill="none" stroke="#8a5a2b" stroke-width="2" stroke-linecap="round" />
+              <ellipse cx="0" cy="-216" rx="44" ry="9" fill="#d9c27a" />
+              <path d="M-24 -217 Q-22 -246 0 -246 Q22 -246 24 -217 Z" fill="#e6d391" />
+              <rect x="-24" y="-222" width="48" height="6" fill="#008037" />
+              <g id="broom">
+                <line x1="6" y1="-158" x2="-128" y2="-14" stroke="#8a5a2b" stroke-width="7" stroke-linecap="round" />
+                <path d="M-122 -34 L-108 -22 L-140 14 L-170 -12 Z" fill="#d9c27a" />
+                <path d="M-130 -14 L-146 6 M-138 -22 L-158 -4 M-122 -6 L-134 10" stroke="#b39a4e" stroke-width="2.4" stroke-linecap="round" />
+                <rect x="-128" y="-40" width="26" height="9" rx="3" fill="#00612a" transform="rotate(-47 -115 -35)" />
+                <!-- arms hold the handle and move with the broom -->
+                <path d="M-14 -160 Q-40 -132 -34 -112" fill="none" stroke="#008037" stroke-width="15" stroke-linecap="round" />
+                <path d="M16 -160 Q8 -138 -14 -134" fill="none" stroke="#00612a" stroke-width="15" stroke-linecap="round" />
+                <circle cx="-35" cy="-110" r="9" fill="#e2b48c" />
+                <circle cx="-16" cy="-133" r="9" fill="#e2b48c" />
+              </g>
+            </g>
+          </g>
+
+          <rect x="0" y="598" width="1920" height="42" fill="#0d3b21" />
+        </svg>
+      </div>
+    </div>
+
+    <script>
+      // Seamless 8-second loop. One linear clock drives every part, and each motion
+      // completes a whole number of cycles, so frame 0 follows the last frame.
+      const DURATION = 8, TAU = Math.PI * 2, NS = "http://www.w3.org/2000/svg";
+      let seed = 7170;
+      function rand() { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; }
+      const COLORS = ["#cdd8be", "#b9c9a6", "#8fa77f", "#658058", "#d9d98f", "#c9c46a", "#008037", "#7fa06e", "#e0c36f"];
+      const $ = function (id) { return document.getElementById(id); };
+
+      // Hill profile: a smooth mound, 260 px high, centered at x = 960.
+      function hillTop(x) {
+        const d = (x - 960) / 700;
+        return Math.abs(d) >= 1 ? 600 : 600 - 260 * (0.5 + 0.5 * Math.cos(Math.PI * d));
+      }
+      let d = "M260 600";
+      for (let x = 260; x <= 1660; x += 20) d += " L" + x + " " + hillTop(x).toFixed(1);
+      $("hillBase").setAttribute("d", d + " L1660 600 Z");
+
+      function addLeaf(parent, x, y, size, rot, color, opacity) {
+        const u = document.createElementNS(NS, "use");
+        u.setAttribute("href", "#leaf");
+        u.setAttribute("fill", color);
+        if (opacity != null) u.setAttribute("opacity", opacity);
+        u.setAttribute("transform", "translate(" + x.toFixed(1) + " " + y.toFixed(1) + ") rotate(" + rot.toFixed(0) + ") scale(" + (size / 10).toFixed(2) + ")");
+        parent.appendChild(u);
+        return u;
+      }
+      // The pile: leaves fill the mound. A front fringe hides the feet of the animals.
+      for (let i = 0; i < 620; i++) {
+        const x = 290 + rand() * 1340, top = hillTop(x);
+        if (top > 592) continue;
+        const y = top - 6 + rand() * (600 - top + 4);
+        addLeaf($("hillBack"), x, y, 13 + rand() * 13, rand() * 360, COLORS[Math.floor(rand() * COLORS.length)]);
+      }
+      for (let i = 0; i < 260; i++) {
+        const x = 420 + rand() * 1080, top = hillTop(x);
+        addLeaf($("hillFront"), x, top + 20 + rand() * 46, 14 + rand() * 12, rand() * 360, COLORS[Math.floor(rand() * COLORS.length)]);
+      }
+
+      // Falling leaves: each lands on the hill surface, once per loop.
+      const fall = [];
+      for (let i = 0; i < 34; i++) {
+        const x = 120 + rand() * 1680;
+        fall.push({ el: addLeaf($("falling"), 0, 0, 1, 0, COLORS[Math.floor(rand() * COLORS.length)]), x: x, land: Math.min(hillTop(x), 596),
+          phase: rand(), size: 12 + rand() * 12, sway: 20 + rand() * 50, swayN: 1 + Math.floor(rand() * 2), spin: (rand() > 0.5 ? 1 : -1) * (1 + Math.floor(rand() * 2)) });
+      }
+      // Leaves the dog kicks up, and leaves the broom pushes.
+      const burst = [];
+      for (let i = 0; i < 18; i++) burst.push({ el: addLeaf($("burst"), 0, 0, 1, 0, COLORS[Math.floor(rand() * COLORS.length)]), ang: -Math.PI * (0.15 + rand() * 0.7), v: 90 + rand() * 120, size: 11 + rand() * 9, spin: (rand() - 0.5) * 900 });
+      const swept = [];
+      for (let i = 0; i < 9; i++) swept.push({ el: addLeaf($("swept"), 0, 0, 1, 0, COLORS[Math.floor(rand() * COLORS.length)]), dx: rand() * 70, dy: rand() * 10, size: 11 + rand() * 8, lag: rand() * 0.5, rot: rand() * 360 });
+
+      const DOG_X = 1010, CAT_X = 760;
+      function T(el, s) { el.setAttribute("transform", s); }
+
+      function render(t) {                       // t runs 0..1 over the loop
+        const a = t * TAU;
+
+        // falling leaves
+        for (let i = 0; i < fall.length; i++) {
+          const f = fall[i], p = (t + f.phase) % 1;
+          const y = -30 + (f.land + 30) * p;
+          const x = f.x + Math.sin(a * f.swayN + i) * f.sway * (1 - p * 0.6);
+          f.el.setAttribute("opacity", (p > 0.93 ? (1 - p) / 0.07 : Math.min(1, p / 0.05)).toFixed(2));
+          T(f.el, "translate(" + x.toFixed(1) + " " + y.toFixed(1) + ") rotate(" + (360 * f.spin * p + i * 31).toFixed(0) + ") scale(" + (f.size / 10).toFixed(2) + " " + (f.size / 10 * (0.55 + 0.45 * Math.cos(a * 2 + i))).toFixed(2) + ")");
+        }
+
+        // dog: two jumps per loop
+        const jp = (t * 2) % 1;                  // phase inside one jump cycle
+        const air = jp < 0.62 ? Math.sin(Math.PI * jp / 0.62) : 0;   // in the air for 62 percent of the cycle
+        const dogY = hillTop(DOG_X) + 34 - air * 128;
+        const squash = jp >= 0.62 ? Math.sin(Math.PI * (jp - 0.62) / 0.38) : 0;
+        T($("dog"), "translate(" + DOG_X + " " + dogY.toFixed(1) + ")");
+        T($("dogBody"), "rotate(" + (-16 * Math.sin(TAU * Math.min(jp / 0.62, 1))).toFixed(1) + " 0 -40) scale(" + (1 + squash * 0.06).toFixed(3) + " " + (1 - squash * 0.12).toFixed(3) + ")");
+        T($("dogTail"), "rotate(" + (22 * Math.sin(a * 12)).toFixed(1) + " -42 -52)");
+        T($("dogEar"), "rotate(" + (-38 * air).toFixed(1) + " 32 -84)");
+        T($("dogLegF1"), "rotate(" + (-38 * air).toFixed(1) + " 26 -30)"); T($("dogLegF2"), "rotate(" + (-52 * air).toFixed(1) + " 38 -28)");
+        T($("dogLegB1"), "rotate(" + (40 * air).toFixed(1) + " -32 -30)"); T($("dogLegB2"), "rotate(" + (54 * air).toFixed(1) + " -20 -28)");
+        // leaves fly up at each take-off
+        for (let i = 0; i < burst.length; i++) {
+          const b = burst[i], bp = Math.min(jp / 0.7, 1), tt = bp * 1.1;
+          const bx = DOG_X + Math.cos(b.ang) * b.v * tt, by = hillTop(DOG_X) + 10 + Math.sin(b.ang) * b.v * tt + 190 * tt * tt;
+          b.el.setAttribute("opacity", (jp < 0.7 ? Math.sin(Math.PI * bp) : 0).toFixed(2));
+          T(b.el, "translate(" + bx.toFixed(1) + " " + by.toFixed(1) + ") rotate(" + (b.spin * tt).toFixed(0) + ") scale(" + (b.size / 10).toFixed(2) + ")");
+        }
+
+        // cat: pops up twice, blinks, and flicks its tail
+        const pop = 0.5 - 0.5 * Math.cos(a * 2);             // 0 hidden, 1 up
+        const catY = hillTop(CAT_X) + 44 - pop * 64;
+        T($("cat"), "translate(" + CAT_X + " " + catY.toFixed(1) + ")");
+        T($("catHead"), "rotate(" + (7 * Math.sin(a * 2 + 1)).toFixed(1) + " 0 0)");
+        T($("catTail"), "translate(40 30) rotate(" + (18 * Math.sin(a * 4)).toFixed(1) + ")");
+        const blink = (t * 4) % 1 > 0.94 ? 0.12 : 1;
+        T($("catEyes"), "translate(0 " + (-24 * (1 - blink)).toFixed(1) + ") scale(1 " + blink + ")");
+        T($("catPawL"), "translate(0 " + (-10 * Math.max(0, Math.sin(a * 4))).toFixed(1) + ")");
+        T($("catPawR"), "translate(0 " + (-10 * Math.max(0, Math.sin(a * 4 + Math.PI))).toFixed(1) + ")");
+
+        // rabbit: hops up the left slope and back, one round trip per loop
+        const go = 0.5 - 0.5 * Math.cos(a);                  // 0..1..0
+        const rx = 470 + go * 190, dir = Math.sin(a) >= 0 ? 1 : -1;
+        const hop = Math.abs(Math.sin(a * 6));
+        T($("rabbit"), "translate(" + rx.toFixed(1) + " " + (hillTop(rx) + 14 - hop * 34).toFixed(1) + ")");
+        T($("rabbitBody"), "scale(" + dir + " 1) rotate(" + (-14 * hop).toFixed(1) + ")");
+        T($("rabbitEars"), "rotate(" + (-16 * hop).toFixed(1) + " 26 -54)");
+
+        // sweeper: four strokes per loop
+        const sw = Math.sin(a * 4);
+        T($("sweeperTop"), "rotate(" + (2.2 * sw - 2).toFixed(2) + " 0 -90)");
+        T($("broom"), "rotate(" + (11 * sw).toFixed(2) + " 6 -158)");
+        for (let i = 0; i < swept.length; i++) {
+          const s = swept[i], k = Math.sin(a * 4 - s.lag);
+          T(s.el, "translate(" + (1418 - 150 - s.dx - 26 * k).toFixed(1) + " " + (590 - s.dy - 5 * Math.max(0, k)).toFixed(1) + ") rotate(" + (s.rot + 50 * k).toFixed(0) + ") scale(" + (s.size / 10).toFixed(2) + ")");
+        }
+      }
+
+      const state = { t: 0 };
+      const tl = gsap.timeline({ paused: true });
+      tl.to(state, { t: 1, duration: DURATION, ease: "none", onUpdate: function () { render(state.t % 1); } });
+      render(0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
