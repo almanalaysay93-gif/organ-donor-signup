@@ -564,6 +564,24 @@
   updateLiveCard();
   updatePledgeImpactMeter();
 
+  // ------------------------------------------------------------------------
+  // 9. Pinned 3D Organ Morphing Scroll Slideshow Initialization (GSAP 3.12)
+  // ------------------------------------------------------------------------
+  if (typeof window.createOrgan3DSlideshowTimeline === "function" && typeof window.gsap !== "undefined") {
+    try {
+      const controller = window.createOrgan3DSlideshowTimeline(window.gsap, window.ScrollTrigger, {
+        sectionSelector: "#organ-slideshow-section",
+        travelDistance: "350vh",
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1
+      });
+      window.__organSlideshow = controller;
+    } catch (err) {
+      console.warn("GSAP 3D slideshow init fallback:", err);
+    }
+  }
+
   // Test hook: lets a check script render the card PNG without a click.
   window.__donorCard = { download: downloadCardPNG, state: cardState };
 })();

@@ -1,0 +1,243 @@
+/**
+ * SHARE OTSU — Design System Tokens & 3D Stage Specifications
+ * Generated from design-dna.json for GSAP 3.12 ScrollTrigger & CSS 3D Stage
+ *
+ * Core Color Limit: Max 5 fundamental tokens
+ * 1. #008037 (Primary Card Green)
+ * 2. #0d3b21 (Deep Forest Green Ink)
+ * 3. #cdd8be (Surgical Sage Ribbon)
+ * 4. #ffffff (Paper White Surface)
+ * 5. #c9a23b (24K Golden Vascular Luminescence)
+ */
+
+:root {
+  /* ==========================================================================
+     1. CORE DESIGN TOKENS (MAX 5)
+     ========================================================================== */
+  --dna-primary: #008037;
+  --dna-deep-ink: #0d3b21;
+  --dna-sage: #cdd8be;
+  --dna-paper: #ffffff;
+  --dna-vascular-gold: #c9a23b;
+
+  /* ==========================================================================
+     2. EXTENDED PALETTE & SEMANTIC MAPPINGS
+     ========================================================================== */
+  --dna-green-deep: #00612a;
+  --dna-sage-soft: #e6ecdd;
+  --dna-leaf: #658058;
+  --dna-mist: #f4f8ef;
+  --dna-ink: #16261b;
+  --dna-text: #33443a;
+  --dna-muted: #55655a;
+  --dna-line: #d9e2cf;
+  --dna-error: #b3261e;
+
+  /* ==========================================================================
+     3. TYPOGRAPHY
+     ========================================================================== */
+  --font-display: "Archivo", "Arial Black", Arial, sans-serif;
+  --font-body: "Albert Sans", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-telemetry: "SF Mono", "JetBrains Mono", Consolas, monospace;
+
+  --font-stretch-display: 125%;
+  --font-weight-display: 900;
+  --font-weight-bold: 700;
+  --font-weight-medium: 600;
+  --font-weight-regular: 400;
+
+  --text-xs: 0.78rem;
+  --text-sm: 0.85rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.2rem;
+  --text-xl: 1.35rem;
+  --text-2xl: 2.2rem;
+  --text-3xl: clamp(2rem, 4.6vw, 3.4rem);
+  --text-hero: clamp(2.9rem, 7.4vw, 6.2rem);
+
+  /* ==========================================================================
+     4. SPACING SCALE & LAYOUT
+     ========================================================================== */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+
+  --container-max: 1240px;
+  --nav-height: 80px;
+
+  /* ==========================================================================
+     5. CORNER RADII
+     ========================================================================== */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-full: 999px;
+  --radius-card: 3.2% / 5.7%;
+
+  /* ==========================================================================
+     6. ELEVATIONS & SHADOWS
+     ========================================================================== */
+  --shadow-subtle: 0 2px 8px -2px rgba(13, 59, 33, 0.08);
+  --shadow-floating: 0 10px 32px -12px rgba(13, 59, 33, 0.28);
+  --shadow-deep-stage: 0 30px 60px -22px rgba(13, 59, 33, 0.38), 0 0 0 1px rgba(13, 59, 33, 0.08);
+  --shadow-specimen: 0 26px 30px rgba(13, 59, 33, 0.18);
+  --shadow-card-bezel: 0 28px 50px -24px rgba(13, 59, 33, 0.4), 0 0 0 1px rgba(13, 59, 33, 0.1);
+
+  /* ==========================================================================
+     7. 3D SPECIMEN STAGE GEOMETRY
+     ========================================================================== */
+  --stage-perspective: 1200px;
+  --stage-perspective-origin: 50% 50%;
+  --stage-aspect: 16 / 9;
+  --stage-height: min(78svh, 760px);
+  --stage-card-perspective: 1400px;
+
+  /* Z-axis camera and plane depth */
+  --stage-z-recede: -600px;
+  --stage-z-focus: 0px;
+  --stage-z-approach: 180px;
+
+  /* Interactive pointer/gyro limits */
+  --stage-tilt-max-x: 8deg;
+  --stage-tilt-max-y: 12deg;
+
+  /* Layer depth factors */
+  --stage-depth-far: 0.5;
+  --stage-depth-mid: 1.0;
+  --stage-depth-near: 2.4;
+
+  /* Dynamic motion inputs (updated via JS RAF) */
+  --stage-mx: 0;
+  --stage-my: 0;
+  --stage-p: 0;
+
+  /* ==========================================================================
+     8. SLIDESHOW & PINNED TIMELINE SCRUB
+     ========================================================================== */
+  --slideshow-travel: 350vh;
+  --slideshow-scrub-lag: 0.5s;
+  --slideshow-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --slideshow-transition-duration: 700ms;
+  --slideshow-morph-stagger: 0.12s;
+
+  /* ==========================================================================
+     9. VISUAL OPTICS & ILLUMINATION
+     ========================================================================== */
+  /* Specular Highlights */
+  --specular-rim: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --specular-bevel: inset 0 -1px 0 rgba(0, 128, 55, 0.08);
+  --specular-glint: linear-gradient(135deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.34));
+  --specular-border: 1px solid rgba(255, 255, 255, 0.7);
+
+  /* Golden Vascular Luminescence */
+  --vascular-gold-deep: #8c6a1d;
+  --vascular-gold-light: #f4d381;
+  --vascular-glow: rgba(201, 162, 59, 0.45);
+  --vascular-halo: 0 0 32px rgba(201, 162, 59, 0.35);
+  --vascular-shadow: drop-shadow(0 0 24px rgba(201, 162, 59, 0.35)) drop-shadow(0 26px 30px rgba(13, 59, 33, 0.18));
+  --vascular-pulse-duration: 4.5s;
+
+  /* Depth of Field / Blur */
+  --dof-blur-far: 4px;
+  --dof-blur-mid: 0px;
+  --dof-blur-near: 2px;
+  --dof-blur-receding: 12px;
+
+  /* Glassmorphism */
+  --glass-blur: 22px;
+  --glass-saturate: 170%;
+  --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.34));
+  --glass-bg-scrolled: linear-gradient(135deg, rgba(255, 255, 255, 0.74), rgba(255, 255, 255, 0.5));
+  --glass-border: 1px solid rgba(255, 255, 255, 0.7);
+  --glass-shadow: 0 10px 32px -12px rgba(13, 59, 33, 0.28);
+
+  /* Film Grain & Noise Overlay */
+  --noise-opacity: 0.02;
+
+  /* ==========================================================================
+     10. THEME SURFACES: LIGHT (DEFAULT)
+     ========================================================================== */
+  --theme-bg-surface: var(--dna-paper);
+  --theme-bg-alt: var(--dna-mist);
+  --theme-text-primary: var(--dna-ink);
+  --theme-text-secondary: var(--dna-text);
+  --theme-text-muted: var(--dna-muted);
+  --theme-border: var(--dna-line);
+  --theme-accent: var(--dna-primary);
+  --theme-vascular-illumination: var(--vascular-glow);
+  --theme-specular-flare: rgba(255, 255, 255, 0.85);
+}
+
+/* ==========================================================================
+   11. THEME SURFACES: DARK MODE
+   ========================================================================== */
+[data-theme="dark"] {
+  --theme-bg-surface: #050b18;
+  --theme-bg-alt: #030712;
+  --theme-text-primary: #f4f8ef;
+  --theme-text-secondary: #cdd8be;
+  --theme-text-muted: #94a3b8;
+  --theme-border: rgba(205, 216, 190, 0.16);
+  --theme-accent: #008037;
+  --theme-vascular-illumination: rgba(244, 211, 129, 0.65);
+  --theme-specular-flare: rgba(201, 162, 59, 0.45);
+
+  --glass-bg: linear-gradient(135deg, rgba(5, 11, 24, 0.75), rgba(3, 7, 18, 0.6));
+  --glass-bg-scrolled: linear-gradient(135deg, rgba(5, 11, 24, 0.88), rgba(3, 7, 18, 0.75));
+  --glass-border: 1px solid rgba(205, 216, 190, 0.2);
+  --glass-shadow: 0 14px 40px -12px rgba(0, 0, 0, 0.65);
+
+  --shadow-subtle: 0 2px 8px -2px rgba(0, 0, 0, 0.4);
+  --shadow-floating: 0 10px 32px -12px rgba(0, 0, 0, 0.6);
+  --shadow-deep-stage: 0 30px 60px -22px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(205, 216, 190, 0.1);
+  --shadow-specimen: 0 26px 30px rgba(0, 0, 0, 0.5);
+  --shadow-card-bezel: 0 28px 50px -24px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(205, 216, 190, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --theme-bg-surface: #050b18;
+    --theme-bg-alt: #030712;
+    --theme-text-primary: #f4f8ef;
+    --theme-text-secondary: #cdd8be;
+    --theme-text-muted: #94a3b8;
+    --theme-border: rgba(205, 216, 190, 0.16);
+    --theme-accent: #008037;
+    --theme-vascular-illumination: rgba(244, 211, 129, 0.65);
+    --theme-specular-flare: rgba(201, 162, 59, 0.45);
+
+    --glass-bg: linear-gradient(135deg, rgba(5, 11, 24, 0.75), rgba(3, 7, 18, 0.6));
+    --glass-bg-scrolled: linear-gradient(135deg, rgba(5, 11, 24, 0.88), rgba(3, 7, 18, 0.75));
+    --glass-border: 1px solid rgba(205, 216, 190, 0.2);
+    --glass-shadow: 0 14px 40px -12px rgba(0, 0, 0, 0.65);
+
+    --shadow-subtle: 0 2px 8px -2px rgba(0, 0, 0, 0.4);
+    --shadow-floating: 0 10px 32px -12px rgba(0, 0, 0, 0.6);
+    --shadow-deep-stage: 0 30px 60px -22px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(205, 216, 190, 0.1);
+    --shadow-specimen: 0 26px 30px rgba(0, 0, 0, 0.5);
+    --shadow-card-bezel: 0 28px 50px -24px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(205, 216, 190, 0.2);
+  }
+}
+
+/* ==========================================================================
+   12. REDUCED MOTION GUARDS
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --stage-tilt-max-x: 0deg;
+    --stage-tilt-max-y: 0deg;
+    --slideshow-scrub-lag: 0s;
+    --slideshow-transition-duration: 0.01ms;
+    --vascular-pulse-duration: 0s;
+    --dof-blur-far: 0px;
+    --dof-blur-near: 0px;
+    --dof-blur-receding: 0px;
+  }
+}

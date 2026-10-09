@@ -1,0 +1,178 @@
+{
+  "design_system": {
+    "colors": {
+      "primary": "#008037",
+      "deep_ink": "#0d3b21",
+      "sage": "#cdd8be",
+      "paper": "#ffffff",
+      "vascular_gold": "#c9a23b"
+    },
+    "typography": {
+      "display": {
+        "family": "\"Archivo\", \"Arial Black\", Arial, sans-serif",
+        "weights": [700, 800, 900],
+        "stretch": "105% to 125%",
+        "case": "uppercase"
+      },
+      "body": {
+        "family": "\"Albert Sans\", -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif",
+        "weights": [400, 600, 700]
+      },
+      "telemetry": {
+        "family": "\"SF Mono\", \"JetBrains Mono\", Consolas, monospace",
+        "weights": [500, 700]
+      },
+      "scale": {
+        "xs": "0.78rem",
+        "sm": "0.85rem",
+        "base": "1.0625rem",
+        "lg": "1.2rem",
+        "xl": "1.35rem",
+        "2xl": "2.2rem",
+        "3xl": "clamp(2rem, 4.6vw, 3.4rem)",
+        "hero": "clamp(2.9rem, 7.4vw, 6.2rem)"
+      }
+    },
+    "spacing": {
+      "scale": {
+        "2xs": "4px",
+        "xs": "8px",
+        "sm": "12px",
+        "md": "16px",
+        "lg": "24px",
+        "xl": "32px",
+        "2xl": "48px",
+        "3xl": "64px",
+        "4xl": "96px"
+      },
+      "container_max": "1240px",
+      "nav_height": "80px"
+    },
+    "radius": {
+      "sm": "6px",
+      "md": "12px",
+      "lg": "18px",
+      "xl": "24px",
+      "full": "999px",
+      "card": "3.2% / 5.7%"
+    },
+    "shadows": {
+      "subtle": "0 2px 8px -2px rgba(13, 59, 33, 0.08)",
+      "floating": "0 10px 32px -12px rgba(13, 59, 33, 0.28)",
+      "deep_stage": "0 30px 60px -22px rgba(13, 59, 33, 0.38), 0 0 0 1px rgba(13, 59, 33, 0.08)",
+      "specimen_glow": "0 26px 30px rgba(13, 59, 33, 0.18)",
+      "vascular_halo": "0 0 40px -10px rgba(201, 162, 59, 0.45)"
+    },
+    "modes": {
+      "light": {
+        "bg_surface": "#ffffff",
+        "bg_mist": "#f4f8ef",
+        "text_primary": "#16261b",
+        "text_secondary": "#33443a",
+        "text_muted": "#55655a",
+        "border": "#d9e2cf",
+        "accent_action": "#008037",
+        "vascular_glow": "rgba(201, 162, 59, 0.35)",
+        "specular_sheen": "rgba(255, 255, 255, 0.85)"
+      },
+      "dark": {
+        "bg_surface": "#050b18",
+        "bg_mist": "#030712",
+        "text_primary": "#f4f8ef",
+        "text_secondary": "#cdd8be",
+        "text_muted": "#94a3b8",
+        "border": "rgba(205, 216, 190, 0.16)",
+        "accent_action": "#008037",
+        "vascular_glow": "rgba(244, 211, 129, 0.65)",
+        "specular_sheen": "rgba(201, 162, 59, 0.45)"
+      }
+    }
+  },
+  "design_style": {
+    "mood": "tactile-clinical, dignified-prestige, restorative, physically-grounded",
+    "era": "Contemporary High-Craft Luxury Medical (2026)",
+    "influences": [
+      "Apple product scroll storytelling (pinned scrub architecture)",
+      "Stripe Press interactive 3D rotation",
+      "SHARE OTSU Printed Organ Donor Registry Card (DOH / SPMC)"
+    ],
+    "adjectives": [
+      "tactile-clinical",
+      "royal-luxury",
+      "physical-weight",
+      "dignified",
+      "hyper-precise",
+      "luminescent",
+      "cinematic"
+    ],
+    "premium_cues": [
+      "24K golden vascular illumination tracing renal and coronary vessel networks",
+      "High-refraction glassmorphic specimen staging with 22px backdrop-filter blur and 170% saturation",
+      "Sub-pixel specular rim lighting and directional anisotropic highlight sheens",
+      "Monospace clinical telemetry HUD readouts for lives-saved metrics",
+      "Damped physical spring scrub without jerk or float curves",
+      "Exact printed donor card fidelity using 854x480 container query positioning"
+    ]
+  },
+  "visual_effects": {
+    "perspective": {
+      "stage_perspective": "1200px",
+      "card_perspective": "1400px",
+      "transform_style": "preserve-3d",
+      "z_depth_recede": "-600px",
+      "z_depth_focus": "0px",
+      "z_depth_approach": "180px",
+      "rotation_limits": {
+        "x_axis": "-8deg to +6deg",
+        "y_axis": "-10deg to +12deg"
+      }
+    },
+    "depth_blur": {
+      "far_plane": "4px blur (depth 0.5)",
+      "mid_plane": "0px blur (depth 1.0, pin-sharp focal plane)",
+      "near_plane": "2px blur (depth 2.2 to 2.6)",
+      "receding_lens_blur": "dynamic 0px to 12px at z = -600px"
+    },
+    "specular_highlights": {
+      "rim_sheen": "inset 0 1px 0 rgba(255, 255, 255, 0.9)",
+      "glint_gradient": "linear-gradient(135deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.34))",
+      "fresnel_border": "1px solid rgba(255, 255, 255, 0.7)"
+    },
+    "golden_vascular_luminescence": {
+      "glow_color": "rgba(201, 162, 59, 0.45)",
+      "core_hex": "#c9a23b",
+      "luminescent_drop_shadow": "drop-shadow(0 0 24px rgba(201, 162, 59, 0.35)) drop-shadow(0 26px 30px rgba(13, 59, 33, 0.18))",
+      "pulsing_microvascular_animation": "vascular-pulse 4.5s ease-in-out infinite alternate"
+    },
+    "glassmorphism": {
+      "blur": "22px",
+      "saturation": "170%",
+      "tint_light": "rgba(255, 255, 255, 0.62)",
+      "tint_dark": "rgba(5, 11, 24, 0.72)",
+      "inset_bevel": "inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 0 rgba(0, 128, 55, 0.08)"
+    },
+    "grain_and_noise": {
+      "opacity": "0.02",
+      "blend_mode": "overlay",
+      "purpose": "eliminates digital banding across 3D lighting falloff gradients"
+    },
+    "shaders_and_particles": {
+      "specimen_particles": "floating ambient botanical micro-spores with z-depth drift",
+      "vascular_flow_shader": "luminous directional arterial pulse along 3D vessel geometry"
+    },
+    "scroll_effects": {
+      "architecture": "GSAP ScrollTrigger pinned timeline scrub",
+      "travel_distance": "350vh",
+      "morph_transition": "active 3D organ rotates, zooms, and recedes to z: -600px while incoming organ scales up from z: -200px to z: 0px",
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1) damped spring physics"
+    }
+  },
+  "source_refs": [
+    "D:/al projects/organ-donor-signup/brief.json",
+    "D:/al projects/organ-donor-signup/styles.css",
+    "D:/al projects/organ-donor-signup/DESIGN.md",
+    "Apple product scroll storytelling (pinned scrub architecture)",
+    "Stripe Press interactive 3D rotation",
+    "SHARE OTSU Printed Donor Card (assets/card-front.png, assets/card-back.png)"
+  ]
+}

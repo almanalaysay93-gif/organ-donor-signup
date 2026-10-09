@@ -11,7 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Archivo:wdth,wght@62..125,500..900&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=13" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="styles.css?v=14" />
 </head>
 <body>
   <a class="skip-link" href="#organs">Skip to the organs</a>
@@ -84,194 +85,201 @@
       <a class="scroll-cue" href="#organs"><span>Scroll</span></a>
     </section>
 
-    <!-- ORGAN SCENES: one organ per screen -->
-    <div class="scenes" id="organs">
-      <nav class="scene-dots" aria-label="Organs">
-        <a href="#organ-heart"><span>Heart</span></a>
-        <a href="#organ-lungs"><span>Lungs</span></a>
-        <a href="#organ-liver"><span>Liver</span></a>
-        <a href="#organ-kidneys"><span>Kidneys</span></a>
-        <a href="#organ-pancreas"><span>Pancreas</span></a>
-        <a href="#organ-bones"><span>Bones</span></a>
-        <a href="#organ-eyes"><span>Eyes</span></a>
-        <a href="#organ-skin"><span>Skin</span></a>
-      </nav>
+    <!-- 3D ORGAN MORPHING SCROLL SLIDESHOW STAGE -->
+    <section id="organ-slideshow-section" class="organ-slideshow-section" aria-label="3D Organ Morphing Slideshow">
+      <span id="organs" style="position: absolute; top: 0; left: 0; height: 1px; width: 1px; opacity: 0; pointer-events: none;"></span>
+      <div class="organ-slideshow-sticky">
+        <header class="organ-telemetry-header">
+          <div class="organ-progress-bar-wrap">
+            <div class="organ-progress-fill" aria-hidden="true"></div>
+          </div>
+          <div class="organ-step-pills" role="tablist" aria-label="Organ slides">
+            <button type="button" class="organ-step-pill active" data-index="0" role="tab" aria-selected="true">01 Heart</button>
+            <button type="button" class="organ-step-pill" data-index="1" role="tab" aria-selected="false">02 Kidneys</button>
+            <button type="button" class="organ-step-pill" data-index="2" role="tab" aria-selected="false">03 Lungs</button>
+            <button type="button" class="organ-step-pill" data-index="3" role="tab" aria-selected="false">04 Liver</button>
+            <button type="button" class="organ-step-pill" data-index="4" role="tab" aria-selected="false">05 Pancreas</button>
+            <button type="button" class="organ-step-pill" data-index="5" role="tab" aria-selected="false">06 Bones</button>
+            <button type="button" class="organ-step-pill" data-index="6" role="tab" aria-selected="false">07 Eyes</button>
+            <button type="button" class="organ-step-pill" data-index="7" role="tab" aria-selected="false">08 Skin</button>
+          </div>
+        </header>
 
-      <section class="scene" id="organ-heart" data-scene>
-        <div class="scene-stage" aria-hidden="true">
-          <div class="scene-layer leaf leaf-far" style="--d:0.5"><img src="media/leaf-b.webp" alt="" loading="lazy" /></div>
-          <div class="scene-layer leaf leaf-mid" style="--d:1.3"><img src="media/leaf-a.webp" alt="" loading="lazy" /></div>
-          <div class="scene-layer scene-organ" style="--d:0.45"><img src="media/organs/heart.webp" alt="" width="909" height="909" /></div>
-          <div class="scene-layer leaf leaf-near" style="--d:2.6"><img src="media/leaf-c.webp" alt="" loading="lazy" /></div>
-        </div>
-        <div class="scene-copy">
-          <p class="scene-index">01 / 08</p>
-          <h2 class="scene-title">Heart</h2>
-          <p class="scene-saves"><strong>1</strong> life saved</p>
-          <p class="scene-lede">A donated heart gives one person with a failing heart a new start.</p>
-          <h3 class="scene-sub">Who it helps</h3>
-          <ul class="scene-conditions">
-            <li>End-stage heart failure</li>
-            <li>Cardiomyopathy</li>
-            <li>Severe coronary artery disease</li>
-            <li>Congenital heart defects</li>
-          </ul>
-        </div>
-      </section>
+        <div class="organ-stage-viewport">
+          <div class="organ-slides-container">
+            <!-- Slide 0: Heart -->
+            <article class="organ-slide active" data-organ="Heart" data-index="0">
+              <div class="organ-specimen-stage">
+                <div class="organ-specimen-3d">
+                  <img src="media/organs/heart.webp" alt="3D Anatomical Heart Specimen" class="specimen-img" width="909" height="909" />
+                  <div class="vascular-glow" aria-hidden="true"></div>
+                </div>
+              </div>
+              <div class="organ-hud-panel">
+                <span class="hud-tag">01 / 08 · Vital Organ</span>
+                <h2 class="hud-title">Heart</h2>
+                <div class="hud-saves"><strong>1</strong> life saved</div>
+                <p class="hud-desc">A donated heart gives one person with end-stage heart failure a second life.</p>
+                <div class="hud-conditions">
+                  <span class="hud-chip">End-stage cardiomyopathy</span>
+                  <span class="hud-chip">Severe coronary disease</span>
+                  <span class="hud-chip">Congenital heart defects</span>
+                </div>
+              </div>
+            </article>
 
-      <section class="scene scene-flip" id="organ-lungs" data-scene>
-        <div class="scene-stage" aria-hidden="true">
-          <div class="scene-layer leaf leaf-far" style="--d:0.5"><img src="media/leaf-b.webp" alt="" loading="lazy" /></div>
-          <div class="scene-layer leaf leaf-mid" style="--d:1.3"><img src="media/leaf-a.webp" alt="" loading="lazy" /></div>
-          <div class="scene-layer scene-organ" style="--d:0.45"><img src="media/organs/lungs.webp" alt="" width="960" height="960" loading="lazy" /></div>
-          <div class="scene-layer leaf leaf-near" style="--d:2.6"><img src="media/leaf-c.webp" alt="" loading="lazy" /></div>
-        </div>
-        <div class="scene-copy">
-          <p class="scene-index">02 / 08</p>
-          <h2 class="scene-title">Lungs</h2>
-          <p class="scene-saves"><strong>2</strong> lives saved</p>
-          <p class="scene-lede">Each lung can go to a different person. Two people can breathe on their own again.</p>
-          <h3 class="scene-sub">Who it helps</h3>
-          <ul class="scene-conditions">
-            <li>COPD and emphysema</li>
-            <li>Pulmonary fibrosis</li>
-            <li>Cystic fibrosis</li>
-            <li>Pulmonary hypertension</li>
-          </ul>
-        </div>
-      </section>
+            <!-- Slide 1: Kidneys -->
+            <article class="organ-slide" data-organ="Kidneys" data-index="1">
+              <div class="organ-specimen-stage">
+                <div class="organ-specimen-3d">
+                  <img src="media/organs/kidneys.webp" alt="3D Anatomical Kidneys Specimen" class="specimen-img" width="960" height="960" loading="lazy" />
+                  <div class="vascular-glow" aria-hidden="true"></div>
+                </div>
+              </div>
+              <div class="organ-hud-panel">
+                <span class="hud-tag">02 / 08 · Paired Vital Organ</span>
+                <h2 class="hud-title">Kidneys</h2>
+                <div class="hud-saves"><strong>2</strong> lives saved</div>
+                <p class="hud-desc">Two kidneys go to two people. Each of them can stop lifelong dialysis.</p>
+                <div class="hud-conditions">
+                  <span class="hud-chip">End-stage renal disease</span>
+                  <span class="hud-chip">Diabetic kidney disease</span>
+                  <span class="hud-chip">Polycystic kidney disease</span>
+                </div>
+              </div>
+            </article>
 
-      <section class="scene" id="organ-liver" data-scene>
-        <div class="scene-stage" aria-hidden="true">
-          <div class="scene-layer leaf leaf-far" style="--d:0.5"><img src="media/leaf-b.webp" alt="" loading="lazy" /></div>
-          <div class="scene-layer leaf leaf-mid" style="--d:1.3"><img src="media/leaf-a.webp" alt="" loading="lazy" /></div>
-          <div class="scene-layer scene-organ" style="--d:0.45"><img src="media/organs/liver.webp" alt="" width="960" height="960" loading="lazy" /></div>
-          <div class="scene-layer leaf leaf-near" style="--d:2.6"><img src="media/leaf-c.webp" alt="" loading="lazy" /></div>
-        </div>
-        <div class="scene-copy">
-          <p class="scene-index">03 / 08</p>
-          <h2 class="scene-title">Liver</h2>
-          <p class="scene-saves">Up to <strong>2</strong> lives saved</p>
-          <p class="scene-lede">Surgeons can split one liver in two. One part can go to an adult and one to a child.</p>
-          <h3 class="scene-sub">Who it helps</h3>
-          <ul class="scene-conditions">
-            <li>Liver cirrhosis</li>
-            <li>Liver failure from hepatitis B or C</li>
-            <li>Biliary atresia in children</li>
-            <li>Acute liver failure</li>
-          </ul>
-        </div>
-      </section>
+            <!-- Slide 2: Lungs -->
+            <article class="organ-slide" data-organ="Lungs" data-index="2">
+              <div class="organ-specimen-stage">
+                <div class="organ-specimen-3d">
+                  <img src="media/organs/lungs.webp" alt="3D Anatomical Lungs Specimen" class="specimen-img" width="960" height="960" loading="lazy" />
+                  <div class="vascular-glow" aria-hidden="true"></div>
+                </div>
+              </div>
+              <div class="organ-hud-panel">
+                <span class="hud-tag">03 / 08 · Respiratory System</span>
+                <h2 class="hud-title">Lungs</h2>
+                <div class="hud-saves"><strong>2</strong> lives saved</div>
+                <p class="hud-desc">Each lung can go to a different person. Two people can breathe independently again.</p>
+                <div class="hud-conditions">
+                  <span class="hud-chip">COPD &amp; Emphysema</span>
+                  <span class="hud-chip">Pulmonary fibrosis</span>
+                  <span class="hud-chip">Cystic fibrosis</span>
+                </div>
+              </div>
+            </article>
 
-      <section class="scene scene-flip" id="organ-kidneys" data-scene>
-        <div class="scene-stage" aria-hidden="true">
-          <div class="scene-layer leaf leaf-far" style="--d:0.5"><img src="media/leaf-b.webp" alt="" loading="lazy" /></div>
-          <div class="scene-layer leaf leaf-mid" style="--d:1.3"><img src="media/leaf-a.webp" alt="" loading="lazy" /></div>
-          <div class="scene-layer scene-organ" style="--d:0.45"><img src="media/organs/kidneys.webp" alt="" width="960" height="960" loading="lazy" /></div>
-          <div class="scene-layer leaf leaf-near" style="--d:2.6"><img src="media/leaf-c.webp" alt="" loading="lazy" /></div>
-        </div>
-        <div class="scene-copy">
-          <p class="scene-index">04 / 08</p>
-          <h2 class="scene-title">Kidneys</h2>
-          <p class="scene-saves"><strong>2</strong> lives saved</p>
-          <p class="scene-lede">Two kidneys go to two people. Each of them can stop dialysis.</p>
-          <h3 class="scene-sub">Who it helps</h3>
-          <ul class="scene-conditions">
-            <li>End-stage kidney disease</li>
-            <li>Diabetic kidney disease</li>
-            <li>Kidney damage from high blood pressure</li>
-            <li>Glomerulonephritis</li>
-            <li>Polycystic kidney disease</li>
-          </ul>
-        </div>
-      </section>
+            <!-- Slide 3: Liver -->
+            <article class="organ-slide" data-organ="Liver" data-index="3">
+              <div class="organ-specimen-stage">
+                <div class="organ-specimen-3d">
+                  <img src="media/organs/liver.webp" alt="3D Anatomical Liver Specimen" class="specimen-img" width="960" height="960" loading="lazy" />
+                  <div class="vascular-glow" aria-hidden="true"></div>
+                </div>
+              </div>
+              <div class="organ-hud-panel">
+                <span class="hud-tag">04 / 08 · Metabolic Organ</span>
+                <h2 class="hud-title">Liver</h2>
+                <div class="hud-saves">Up to <strong>2</strong> lives saved</div>
+                <p class="hud-desc">Surgeons can split one liver in two to save an adult and a pediatric patient simultaneously.</p>
+                <div class="hud-conditions">
+                  <span class="hud-chip">Liver cirrhosis</span>
+                  <span class="hud-chip">Biliary atresia in children</span>
+                  <span class="hud-chip">Acute hepatic failure</span>
+                </div>
+              </div>
+            </article>
 
-      <section class="scene" id="organ-pancreas" data-scene>
-        <div class="scene-stage" aria-hidden="true">
-          <div class="scene-layer leaf leaf-far" style="--d:0.5"><img src="media/leaf-b.webp" alt="" loading="lazy" /></div>
-          <div class="scene-layer leaf leaf-mid" style="--d:1.3"><img src="media/leaf-a.webp" alt="" loading="lazy" /></div>
-          <div class="scene-layer scene-organ" style="--d:0.45"><img src="media/organs/pancreas.webp" alt="" width="960" height="960" loading="lazy" /></div>
-          <div class="scene-layer leaf leaf-near" style="--d:2.6"><img src="media/leaf-c.webp" alt="" loading="lazy" /></div>
-        </div>
-        <div class="scene-copy">
-          <p class="scene-index">05 / 08</p>
-          <h2 class="scene-title">Pancreas</h2>
-          <p class="scene-saves"><strong>1</strong> life saved</p>
-          <p class="scene-lede">A new pancreas makes insulin again. Doctors often transplant it together with a kidney.</p>
-          <h3 class="scene-sub">Who it helps</h3>
-          <ul class="scene-conditions">
-            <li>Type 1 diabetes with severe complications</li>
-            <li>Diabetes with kidney failure</li>
-            <li>Dangerous low blood sugar episodes</li>
-          </ul>
-        </div>
-      </section>
+            <!-- Slide 4: Pancreas -->
+            <article class="organ-slide" data-organ="Pancreas" data-index="4">
+              <div class="organ-specimen-stage">
+                <div class="organ-specimen-3d">
+                  <img src="media/organs/pancreas.webp" alt="3D Anatomical Pancreas Specimen" class="specimen-img" width="960" height="960" loading="lazy" />
+                  <div class="vascular-glow" aria-hidden="true"></div>
+                </div>
+              </div>
+              <div class="organ-hud-panel">
+                <span class="hud-tag">05 / 08 · Endocrine Organ</span>
+                <h2 class="hud-title">Pancreas</h2>
+                <div class="hud-saves"><strong>1</strong> life saved</div>
+                <p class="hud-desc">A new pancreas makes insulin again, often transplanted together with a kidney.</p>
+                <div class="hud-conditions">
+                  <span class="hud-chip">Type 1 diabetes</span>
+                  <span class="hud-chip">Diabetes with kidney failure</span>
+                  <span class="hud-chip">Severe hypoglycemia</span>
+                </div>
+              </div>
+            </article>
 
-      <section class="scene scene-flip" id="organ-bones" data-scene>
-        <div class="scene-stage" aria-hidden="true">
-          <div class="scene-layer leaf leaf-far" style="--d:0.5"><img src="media/leaf-b.webp" alt="" loading="lazy" /></div>
-          <div class="scene-layer leaf leaf-mid" style="--d:1.3"><img src="media/leaf-a.webp" alt="" loading="lazy" /></div>
-          <div class="scene-layer scene-organ" style="--d:0.45"><img src="media/organs/bones.webp" alt="" width="960" height="960" loading="lazy" /></div>
-          <div class="scene-layer leaf leaf-near" style="--d:2.6"><img src="media/leaf-c.webp" alt="" loading="lazy" /></div>
-        </div>
-        <div class="scene-copy">
-          <p class="scene-index">06 / 08</p>
-          <h2 class="scene-title">Bones</h2>
-          <p class="scene-saves"><strong>10+</strong> people helped</p>
-          <p class="scene-lede">Donated bone rebuilds limbs and spines. It can save an arm or a leg from amputation.</p>
-          <h3 class="scene-sub">Who it helps</h3>
-          <ul class="scene-conditions">
-            <li>Bone cancer</li>
-            <li>Severe fractures and trauma</li>
-            <li>Spine surgery</li>
-            <li>Joint reconstruction</li>
-          </ul>
-        </div>
-      </section>
+            <!-- Slide 5: Bones -->
+            <article class="organ-slide" data-organ="Bones" data-index="5">
+              <div class="organ-specimen-stage">
+                <div class="organ-specimen-3d">
+                  <img src="media/organs/bones.webp" alt="3D Anatomical Bone Tissue Specimen" class="specimen-img" width="960" height="960" loading="lazy" />
+                  <div class="vascular-glow" aria-hidden="true"></div>
+                </div>
+              </div>
+              <div class="organ-hud-panel">
+                <span class="hud-tag">06 / 08 · Structural Tissue</span>
+                <h2 class="hud-title">Bones</h2>
+                <div class="hud-saves"><strong>10+</strong> people helped</div>
+                <p class="hud-desc">Donated bone rebuilds limbs and spines, preventing amputations and restoring mobility.</p>
+                <div class="hud-conditions">
+                  <span class="hud-chip">Bone cancer</span>
+                  <span class="hud-chip">Severe fractures &amp; trauma</span>
+                  <span class="hud-chip">Spinal reconstruction</span>
+                </div>
+              </div>
+            </article>
 
-      <section class="scene" id="organ-eyes" data-scene>
-        <div class="scene-stage" aria-hidden="true">
-          <div class="scene-layer leaf leaf-far" style="--d:0.5"><img src="media/leaf-b.webp" alt="" loading="lazy" /></div>
-          <div class="scene-layer leaf leaf-mid" style="--d:1.3"><img src="media/leaf-a.webp" alt="" loading="lazy" /></div>
-          <div class="scene-layer scene-organ" style="--d:0.45"><img src="media/organs/eyes.webp" alt="" width="939" height="939" loading="lazy" /></div>
-          <div class="scene-layer leaf leaf-near" style="--d:2.6"><img src="media/leaf-c.webp" alt="" loading="lazy" /></div>
-        </div>
-        <div class="scene-copy">
-          <p class="scene-index">07 / 08</p>
-          <h2 class="scene-title">Eyes</h2>
-          <p class="scene-saves"><strong>2</strong> people see again</p>
-          <p class="scene-lede">The cornea is the clear front of the eye. Two donated corneas give sight back to two people.</p>
-          <h3 class="scene-sub">Who it helps</h3>
-          <ul class="scene-conditions">
-            <li>Corneal blindness</li>
-            <li>Corneal scars from infection or injury</li>
-            <li>Keratoconus</li>
-            <li>Corneal dystrophy</li>
-          </ul>
-        </div>
-      </section>
+            <!-- Slide 6: Eyes -->
+            <article class="organ-slide" data-organ="Eyes" data-index="6">
+              <div class="organ-specimen-stage">
+                <div class="organ-specimen-3d">
+                  <img src="media/organs/eyes.webp" alt="3D Anatomical Cornea Specimen" class="specimen-img" width="939" height="939" loading="lazy" />
+                  <div class="vascular-glow" aria-hidden="true"></div>
+                </div>
+              </div>
+              <div class="organ-hud-panel">
+                <span class="hud-tag">07 / 08 · Ocular Tissue</span>
+                <h2 class="hud-title">Eyes &amp; Corneas</h2>
+                <div class="hud-saves"><strong>2</strong> people see again</div>
+                <p class="hud-desc">The cornea is the clear window of the eye. Two donated corneas restore sight to two people.</p>
+                <div class="hud-conditions">
+                  <span class="hud-chip">Corneal blindness</span>
+                  <span class="hud-chip">Corneal injury &amp; scarring</span>
+                  <span class="hud-chip">Keratoconus</span>
+                </div>
+              </div>
+            </article>
 
-      <section class="scene scene-flip" id="organ-skin" data-scene>
-        <div class="scene-stage" aria-hidden="true">
-          <div class="scene-layer leaf leaf-far" style="--d:0.5"><img src="media/leaf-b.webp" alt="" loading="lazy" /></div>
-          <div class="scene-layer leaf leaf-mid" style="--d:1.3"><img src="media/leaf-a.webp" alt="" loading="lazy" /></div>
-          <div class="scene-layer scene-organ" style="--d:0.45"><img src="media/organs/skin.webp" alt="" width="960" height="960" loading="lazy" /></div>
-          <div class="scene-layer leaf leaf-near" style="--d:2.6"><img src="media/leaf-c.webp" alt="" loading="lazy" /></div>
+            <!-- Slide 7: Skin -->
+            <article class="organ-slide" data-organ="Skin" data-index="7">
+              <div class="organ-specimen-stage">
+                <div class="organ-specimen-3d">
+                  <img src="media/organs/skin.webp" alt="3D Anatomical Skin Specimen" class="specimen-img" width="960" height="960" loading="lazy" />
+                  <div class="vascular-glow" aria-hidden="true"></div>
+                </div>
+              </div>
+              <div class="organ-hud-panel">
+                <span class="hud-tag">08 / 08 · Biological Barrier</span>
+                <h2 class="hud-title">Skin Tissue</h2>
+                <div class="hud-saves"><strong>20+</strong> people helped</div>
+                <p class="hud-desc">Donated skin biological dressings protect severe burn victims, preventing fatal infection.</p>
+                <div class="hud-conditions">
+                  <span class="hud-chip">Critical burns</span>
+                  <span class="hud-chip">Large trauma wounds</span>
+                  <span class="hud-chip">Severe dermatological loss</span>
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
-        <div class="scene-copy">
-          <p class="scene-index">08 / 08</p>
-          <h2 class="scene-title">Skin</h2>
-          <p class="scene-saves"><strong>20+</strong> people helped</p>
-          <p class="scene-lede">Donated skin covers deep burns and wounds while the body heals. It prevents infection and eases pain.</p>
-          <h3 class="scene-sub">Who it helps</h3>
-          <ul class="scene-conditions">
-            <li>Severe burns</li>
-            <li>Large open wounds</li>
-            <li>Skin loss after infection or trauma</li>
-          </ul>
-        </div>
-      </section>
-    </div>
+
+        <a class="stage-skip-cue" href="#studio">Skip slideshow to sign up &darr;</a>
+      </div>
+    </section>
 
     <!-- SIGN-UP + DIGITAL DONOR CARD -->
     <section class="studio" id="studio">
@@ -535,6 +543,9 @@
     </div>
   </footer>
 
-  <script src="script.js?v=11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="gsap-timeline.js"></script>
+  <script src="script.js?v=12"></script>
 </body>
 </html>

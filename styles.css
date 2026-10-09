@@ -207,118 +207,370 @@ a { color: var(--green-deep); }
 @keyframes cue { 0% { transform: scaleY(0); } 60% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
 
 /* ---------- Organ scenes: one per screen ---------- */
-.scenes { position: relative; }
+/* ==========================================================================
+   PINNED 3D ORGAN MORPHING SCROLL SLIDESHOW STAGE
+   Engine: GSAP 3.12 + ScrollTrigger + CSS 3D Matrix
+   ========================================================================== */
 
-.scene {
-  --p: 0; /* -1 below the viewport, 0 centered, 1 above. Written by script.js */
-  position: relative; min-height: 100svh; overflow: hidden;
-  display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: center; gap: 32px;
-  padding: calc(var(--nav-h) + 16px) clamp(20px, 6vw, 96px) 32px;
-  background: var(--paper);
+#organ-slideshow-section.organ-slideshow-section {
+  position: relative;
+  width: 100%;
+  height: var(--slideshow-travel, 350vh);
+  background: var(--theme-bg-surface, var(--bg-void, #ffffff));
+  z-index: 5;
+  box-sizing: border-box;
 }
-.scene:nth-of-type(even) { background: var(--mist); }
-.scene-flip .scene-stage { order: 2; }
 
-.scene-stage {
-  position: relative; height: min(78svh, 760px);
+.organ-slideshow-sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: calc(var(--nav-h, 72px) + 12px) clamp(16px, 4vw, 48px) 24px;
+  box-sizing: border-box;
+}
+
+/* Pinned Telemetry & Scrubber Header */
+.organ-telemetry-header {
+  position: relative;
+  z-index: 30;
+  width: 100%;
+  max-width: var(--container-max, 1200px);
+  margin: 0 auto 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.organ-progress-bar-wrap {
+  width: 100%;
+  height: 4px;
+  background: var(--dna-line, rgba(0, 128, 55, 0.15));
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.organ-progress-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, var(--dna-primary, #008037) 0%, var(--dna-vascular-gold, #c9a23b) 100%);
+  transform-origin: left center;
+  transform: scaleX(0.125);
+  border-radius: 999px;
+  box-shadow: 0 0 12px rgba(201, 162, 59, 0.4);
+}
+
+.organ-step-pills {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.organ-step-pill {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: var(--font-telemetry, monospace);
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: var(--dna-paper, #ffffff);
+  color: var(--dna-muted, #55655a);
+  border: 1px solid var(--dna-line, #d9e2cf);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.organ-step-pill:hover {
+  color: var(--dna-deep-ink, #0d3b21);
+  border-color: var(--dna-vascular-gold, #c9a23b);
+  transform: translateY(-1px);
+}
+
+.organ-step-pill.active {
+  background: linear-gradient(135deg, var(--dna-primary, #008037) 0%, var(--dna-green-deep, #00612a) 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(0, 128, 55, 0.3);
+  transform: scale(1.05);
+}
+
+[data-theme="dark"] .organ-step-pill {
+  background: rgba(8, 20, 42, 0.7);
+  color: #94a3b8;
+  border-color: rgba(201, 162, 59, 0.25);
+}
+
+[data-theme="dark"] .organ-step-pill.active {
+  background: linear-gradient(135deg, #c9a23b 0%, #8c6a1d 100%);
+  color: #030712;
+  box-shadow: 0 4px 14px rgba(201, 162, 59, 0.35);
+}
+
+/* 3D Viewport Stage */
+.organ-stage-viewport {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  max-width: var(--container-max, 1200px);
+  margin: 0 auto;
   perspective: 1200px;
-}
-.scene-layer {
-  position: absolute; will-change: transform;
-  transform: translate3d(calc(var(--mx) * var(--d) * 34px), calc(var(--p) * var(--d) * 190px + var(--my) * var(--d) * 22px), 0);
-}
-
-.scene-organ {
-  inset: 4% 8%; display: grid; place-items: center;
-  transform:
-    translate3d(calc(var(--mx) * var(--d) * 34px), calc(var(--p) * var(--d) * 190px + var(--my) * var(--d) * 22px), 0)
-    rotateY(calc(var(--mx) * 10deg + var(--p) * -16deg))
-    rotateX(calc(var(--my) * -8deg + var(--p) * 5deg));
-}
-.scene-organ img {
-  width: 100%; height: 100%; object-fit: contain;
-  filter: drop-shadow(0 26px 30px rgba(13, 59, 33, 0.18));
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
 }
 
-/* Leaves in three depth planes: far (soft, slow), mid, and near (in front of the organ, fast).
-   The wrapper carries the scroll and pointer parallax. The image inside sways. */
-.leaf {
-  --edge: calc(clamp(20px, 6vw, 96px) * -1 - 150px);
-  left: var(--edge); pointer-events: none; transform-origin: 0 50%;
-  transform:
-    translate3d(calc(var(--mx) * var(--d) * 30px), calc(var(--p) * var(--d) * 150px + var(--my) * var(--d) * 18px), 0)
-    rotateY(calc(var(--p) * var(--d) * 9deg + var(--mx) * var(--d) * -4deg));
-}
-.leaf img { height: 100%; width: auto; max-width: none; transform-origin: 0 40%; animation: leaf-sway 7s ease-in-out infinite alternate; }
-.leaf-far { top: -8%; height: 118%; opacity: 0.4; filter: blur(4px); }
-.leaf-far img { animation-duration: 11s; }
-.leaf-mid { top: -16%; height: 82%; opacity: 0.95; filter: drop-shadow(14px 18px 16px rgba(13, 59, 33, 0.14)); }
-.leaf-near { bottom: -26%; height: 66%; --edge: calc(clamp(20px, 6vw, 96px) * -1 - 220px); filter: blur(2px) drop-shadow(22px 26px 22px rgba(13, 59, 33, 0.2)); }
-.leaf-near img { animation-duration: 5.5s; animation-delay: -2s; }
-.scene-flip .leaf { left: auto; right: var(--edge); scale: -1 1; transform-origin: 50% 50%; }
-@keyframes leaf-sway {
-  from { transform: rotate(-2.2deg) rotateY(-10deg); }
-  to { transform: rotate(2.6deg) rotateY(12deg); }
+.organ-slides-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
 }
 
-.scene-copy { position: relative; max-width: 30rem; }
-.scene-flip .scene-copy { justify-self: end; }
-.scene-copy > * {
-  opacity: 0; transform: translateY(26px);
-  transition: opacity 600ms var(--ease-out), transform 700ms var(--ease-out);
-}
-.scene.in-view .scene-copy > * { opacity: 1; transform: none; }
-.scene.in-view .scene-copy > :nth-child(2) { transition-delay: 60ms; }
-.scene.in-view .scene-copy > :nth-child(3) { transition-delay: 120ms; }
-.scene.in-view .scene-copy > :nth-child(4) { transition-delay: 180ms; }
-.scene.in-view .scene-copy > :nth-child(5) { transition-delay: 240ms; }
-.scene.in-view .scene-copy > :nth-child(6) { transition-delay: 300ms; }
-
-.scene-index { font-family: var(--font-display); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.16em; color: var(--muted); }
-.scene-title {
-  font-family: var(--font-display); font-stretch: 125%; font-weight: 900;
-  font-size: clamp(2.8rem, 6.4vw, 5.4rem); line-height: 0.95; text-transform: uppercase;
-  color: var(--green); margin: 8px 0 14px;
-}
-.scene-saves {
-  display: inline-flex; align-items: baseline; gap: 10px;
-  font-family: var(--font-display); font-stretch: 112%; font-weight: 800; font-size: 1.35rem;
-  color: var(--green-ink); padding-bottom: 10px; border-bottom: 3px solid var(--green);
-}
-.scene-saves strong { font-size: 2.6rem; font-weight: 900; line-height: 1; color: var(--green); }
-.scene-lede { margin: 18px 0 22px; font-size: 1.15rem; color: var(--text); }
-.scene-sub { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
-.scene-conditions { display: flex; flex-wrap: wrap; gap: 8px; }
-.scene-conditions li {
-  padding: 8px 14px; border-radius: 999px;
-  background: var(--paper); border: 1.5px solid var(--sage);
-  font-size: 0.95rem; font-weight: 600; color: var(--green-ink);
+/* Individual 3D Slide */
+.organ-slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 40px;
+  transform-style: preserve-3d;
+  pointer-events: none;
 }
 
-/* dot navigation, desktop */
-.scene-dots {
-  position: sticky; top: 50svh; z-index: 5; height: 0;
-  display: flex; flex-direction: column; align-items: flex-end;
-  margin-right: 14px; translate: 0 -112px; pointer-events: none;
-  opacity: 0; transition: opacity 250ms;
+.organ-slide.active {
+  pointer-events: auto;
 }
-.scene-dots.visible { opacity: 1; }
-.scene-dots:not(.visible) a { pointer-events: none; }
-.scene-dots a {
-  pointer-events: auto; position: relative; width: 28px; height: 28px; display: grid; place-items: center;
+
+/* 3D Specimen Stage Box */
+.organ-specimen-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  height: 100%;
+  min-height: 380px;
 }
-.scene-dots a::before {
-  content: ""; width: 9px; height: 9px; border-radius: 50%;
-  background: var(--sage); border: 1.5px solid var(--leaf);
-  transition: transform 200ms var(--ease-out), background-color 200ms;
+
+.organ-specimen-3d {
+  position: relative;
+  width: min(480px, 85vw);
+  height: min(480px, 85vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
 }
-.scene-dots a.active::before { background: var(--green); border-color: var(--green); transform: scale(1.5); }
-.scene-dots span {
-  position: absolute; right: 30px; white-space: nowrap;
-  padding: 4px 10px; border-radius: 999px; background: var(--green-ink); color: #fff; font-size: 0.78rem; font-weight: 600;
-  opacity: 0; transform: translateX(6px); transition: opacity 160ms, transform 160ms; pointer-events: none;
+
+.specimen-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 26px 36px rgba(13, 59, 33, 0.22));
+  position: relative;
+  z-index: 2;
+  user-select: none;
+  -webkit-user-drag: none;
 }
-.scene-dots a:hover span, .scene-dots a:focus-visible span { opacity: 1; transform: none; }
+
+.vascular-glow {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 162, 59, 0.3) 0%, rgba(0, 128, 55, 0.12) 50%, transparent 75%);
+  filter: blur(32px);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* HUD Panel */
+.organ-hud-panel {
+  position: relative;
+  background: var(--dna-paper, #ffffff);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid var(--dna-line, rgba(201, 162, 59, 0.35));
+  border-radius: var(--radius-lg, 18px);
+  padding: 36px 32px;
+  box-shadow: 0 20px 45px -12px rgba(13, 59, 33, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.95);
+  max-width: 520px;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  z-index: 10;
+}
+
+[data-theme="dark"] .organ-hud-panel {
+  background: rgba(8, 20, 42, 0.88);
+  border-color: rgba(201, 162, 59, 0.4);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.hud-tag {
+  display: inline-block;
+  font-family: var(--font-telemetry, monospace);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--dna-muted, #55655a);
+  margin-bottom: 8px;
+}
+
+[data-theme="dark"] .hud-tag {
+  color: #94a3b8;
+}
+
+.hud-title {
+  font-family: var(--font-display, "Archivo", sans-serif);
+  font-stretch: 125%;
+  font-weight: 900;
+  font-size: clamp(2.4rem, 4.5vw, 4rem);
+  text-transform: uppercase;
+  color: var(--dna-primary, #008037);
+  line-height: 1.0;
+  margin-bottom: 12px;
+}
+
+[data-theme="dark"] .hud-title {
+  color: #f4d381;
+}
+
+.hud-saves {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-display, "Archivo", sans-serif);
+  font-stretch: 112%;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--dna-deep-ink, #0d3b21);
+  padding-bottom: 6px;
+  border-bottom: 3px solid var(--dna-primary, #008037);
+  margin-bottom: 16px;
+}
+
+.hud-saves strong {
+  font-size: 2.2rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--dna-primary, #008037);
+}
+
+[data-theme="dark"] .hud-saves {
+  color: #f8fafc;
+  border-color: #c9a23b;
+}
+
+[data-theme="dark"] .hud-saves strong {
+  color: #c9a23b;
+}
+
+.hud-desc {
+  font-size: 1.05rem;
+  color: var(--dna-text, #33443a);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+[data-theme="dark"] .hud-desc {
+  color: #cbd5e1;
+}
+
+.hud-conditions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hud-chip {
+  font-size: 0.8rem;
+  background: var(--dna-mist, #f4f8ef);
+  color: var(--dna-deep-ink, #0d3b21);
+  border: 1px solid var(--dna-line, #d9e2cf);
+  border-radius: 999px;
+  padding: 5px 14px;
+}
+
+[data-theme="dark"] .hud-chip {
+  background: rgba(4, 11, 24, 0.85);
+  color: #cbd5e1;
+  border-color: rgba(201, 162, 59, 0.25);
+}
+
+/* Skip cue */
+.stage-skip-cue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px auto 0;
+  font-family: var(--font-telemetry, monospace);
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--dna-muted, #55655a);
+  border-bottom: 1px dashed var(--dna-line, #d9e2cf);
+  padding-bottom: 2px;
+  transition: color 0.2s ease;
+  z-index: 30;
+}
+
+.stage-skip-cue:hover {
+  color: var(--dna-primary, #008037);
+  border-color: var(--dna-primary, #008037);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .organ-slide {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .organ-specimen-stage {
+    min-height: 220px;
+    max-height: 260px;
+  }
+
+  .organ-specimen-3d {
+    width: 220px;
+    height: 220px;
+  }
+
+  .organ-hud-panel {
+    padding: 18px 18px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .hud-title {
+    font-size: 1.8rem;
+  }
+
+  .hud-conditions {
+    justify-content: center;
+  }
+
+  .organ-step-pills {
+    display: none;
+  }
+}
 
 /* ---------- Sign-up studio ---------- */
 .studio { padding: 96px 20px; background: var(--paper); }

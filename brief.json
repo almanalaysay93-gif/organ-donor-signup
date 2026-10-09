@@ -1,0 +1,24 @@
+{
+  "goal": "Pinned 3D morphing scroll parallax slideshow for vital organs section",
+  "audience": "Prospective organ donors and clinical registry participants",
+  "vibe": [
+    "tactile-clinical",
+    "royal-luxury",
+    "physical-weight"
+  ],
+  "references": [
+    "Apple product scroll storytelling (pinned scrub architecture)",
+    "Stripe Press interactive 3D rotation"
+  ],
+  "antiSlop": [
+    "No generic purple AI lighting or blurry canvas resizing",
+    "No inescapable scrolljacking or jerky frame drops",
+    "No floaty non-physical easing curves",
+    "Preserve WCAG light and dark mode contrast fidelity"
+  ],
+  "duration": "Dynamic scroll scrub (pinned section ~350vh total travel)",
+  "aspect": "Responsive desktop 16:9 to mobile vertical viewport adaptation",
+  "tech": "GSAP 3.12 + ScrollTrigger + CSS 3D perspective transforms + Vanilla JS",
+  "successMetric": "Silky 60fps scrub where 3D organs morph and rotate along z-axis with clinical lives-saved HUDs and clean release to signup form",
+  "interactionThesis": "As user scrolls into the Organ Matrix, page locks into a cinematic 3D specimen stage. Scrolling forward scrubs the timeline: the active 3D organ rotates, zooms, and recedes into deep space while the next organ materializes from z-depth with golden vascular illumination and clinical telemetry. Damped spring physics give each transition physical weight and clinical precision before unlocking into the signup form."
+}
