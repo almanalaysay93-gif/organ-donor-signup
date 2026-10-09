@@ -1,3 +1,37 @@
+# SHARE Organ Donor Sign-up: Apps Script backend
+
+This script runs as a Google Apps Script web app. It is owned by `spmcotsu@gmail.com`.
+
+For each sign-up it:
+
+1. Saves the row to the sheet `Web Sign-ups`.
+2. Emails the donor's next of kin once. The email shows the donor's name, the organs chosen, and the sender `SHARE, Southern Philippines Medical Center`.
+
+Address and birthday are not included in the email.
+
+## Setup
+
+1. Sign in to Google as `spmcotsu@gmail.com`. Open the sheet that stores sign-ups.
+2. Go to **Extensions > Apps Script**. Delete the sample code. Paste the script below and save.
+3. Go to **Deploy > Manage deployments**. Edit the existing web app, choose **New version**, then **Deploy**. This keeps the same `/exec` URL, so `script.js` needs no change.
+   If you create a new deployment instead, copy its `/exec` URL into `SUBMIT_ENDPOINT` in `script.js`.
+4. Authorize the Gmail permission when prompted.
+5. Check the sheet header row. It must match `HEADERS` in the script. Add any missing column names (for example `Blood Type`) to the right of the existing columns.
+
+## Test
+
+Run `testAppend()` once from the editor. It sends one email to the account running the script (the owner). It does not email any real family.
+Delete the `ZZTEST` row from the sheet afterwards.
+
+## Limits
+
+- A consumer Gmail account can send about 100 emails per day.
+- When the daily quota is used up, the sign-up is still saved. The sheet shows `Not sent: daily email quota used up`.
+- If sending fails for any other reason, the sheet shows `Failed: ...`.
+
+## Script (`apps-script.gs`)
+
+```javascript
 /**
  * SHARE — Organ donor sign-up backend (Google Apps Script web app)
  * ---------------------------------------------------------------
@@ -150,3 +184,4 @@ function testAppend() {
     parameters: { organs: ['Heart', 'Kidneys'] }
   });
 }
+```

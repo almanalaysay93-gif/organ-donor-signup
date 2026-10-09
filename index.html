@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Archivo:wdth,wght@62..125,500..900&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=13" />
+  <link rel="stylesheet" href="styles.css?v=14" />
 </head>
 <body>
   <a class="skip-link" href="#organs">Skip to the organs</a>
@@ -310,7 +310,7 @@
                 <div class="form-row">
                   <div class="form-group">
                     <label class="form-label" for="bloodType">Blood type</label>
-                    <select id="bloodType" class="form-control">
+                    <select id="bloodType" name="bloodType" class="form-control">
                       <option value="">Not sure yet</option>
                       <option value="O+">O+</option>
                       <option value="O-">O-</option>
@@ -409,6 +409,12 @@
                   </div>
                 </div>
 
+                <div class="form-group">
+                  <label class="form-label" for="nextOfKinEmail">Next of kin email</label>
+                  <input type="email" id="nextOfKinEmail" name="nextOfKinEmail" class="form-control" placeholder="name@example.com" autocomplete="off" required />
+                  <p class="form-hint">We email your next of kin once. The email says that you pledged and which organs you chose.</p>
+                </div>
+
                 <label class="conforme">
                   <input type="checkbox" name="conforme" value="I confirm that I have had a conversation with my family so that they know that I want them to support my organ donation decision" required />
                   <span><strong>Conforme (RA 7170).</strong> I confirm that I talked with my family. They know that I want them to support my decision to donate my organs.</span>
@@ -416,6 +422,7 @@
               </fieldset>
 
               <button type="submit" id="submit-btn" class="btn btn-primary btn-block">Sign up as a donor</button>
+              <p id="submit-error" class="form-error" role="alert" hidden>We could not send your sign-up. Check your connection and try again. Your answers are still in the form.</p>
             </form>
 
             <div id="thank-you" class="thank-you" hidden>
@@ -535,6 +542,36 @@
     </div>
   </footer>
 
-  <script src="script.js?v=11"></script>
+  <!-- DATA PRIVACY NOTICE: shown before any pledge is sent -->
+  <dialog id="privacy-dialog" class="privacy-dialog" aria-labelledby="privacy-title">
+    <div class="privacy-inner">
+      <p class="eyebrow">Before you sign</p>
+      <h2 id="privacy-title" class="privacy-title">Data Privacy Notice</h2>
+      <div class="privacy-body">
+        <p>SHARE at Southern Philippines Medical Center (SPMC) collects your information to record your pledge in the organ donor registry.</p>
+        <h3>What we collect</h3>
+        <ul>
+          <li>Your name, birthday, sex, address, mobile number, and email.</li>
+          <li>Your blood type and the organs and tissues you choose. Blood type and health choices are sensitive personal information.</li>
+          <li>Your next of kin's name, mobile number, and email.</li>
+        </ul>
+        <h3>Why we use it</h3>
+        <ul>
+          <li>To keep your pledge in the registry.</li>
+          <li>To send your next of kin one email. It tells them that you pledged and which organs you chose. It does not include your blood type, address, or birthday.</li>
+        </ul>
+        <h3>Your rights</h3>
+        <p>Under Republic Act No. 10173, the Data Privacy Act of 2012, you may access your data, correct it, withdraw your pledge, and ask us to remove it. You may also complain to the National Privacy Commission.</p>
+        <p>To use these rights, contact SHARE at SPMC, J.P. Laurel Avenue, Bajada, Davao City.</p>
+        <p>If you choose to continue, you agree that SHARE may use this information for the purposes above.</p>
+      </div>
+      <div class="privacy-actions">
+        <button type="button" class="btn btn-ghost" id="privacy-back">Go back</button>
+        <button type="button" class="btn btn-primary" id="privacy-continue">I agree, continue</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="script.js?v=13"></script>
 </body>
 </html>

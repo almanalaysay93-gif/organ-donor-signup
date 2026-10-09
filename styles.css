@@ -472,6 +472,28 @@ a { color: var(--green-deep); }
 .leaf-hill { position: relative; background: var(--paper); line-height: 0; overflow: hidden; }
 .leaf-hill-video { display: block; width: 100%; aspect-ratio: 3 / 1; object-fit: cover; min-height: 240px; }
 
+/* ---------- Data privacy notice ---------- */
+.privacy-dialog {
+  border: 0; border-radius: 22px; padding: 0;
+  width: min(580px, calc(100% - 32px)); max-height: calc(100svh - 32px);
+  background: var(--paper); color: var(--text);
+  box-shadow: 0 40px 80px -30px rgba(13, 59, 33, 0.5);
+}
+.privacy-dialog::backdrop { background: rgba(13, 59, 33, 0.45); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.privacy-inner { padding: clamp(22px, 4vw, 34px); max-height: calc(100svh - 32px); overflow: auto; }
+.privacy-title {
+  font-family: var(--font-display); font-stretch: 120%; font-weight: 900; font-size: 1.7rem; line-height: 1.05;
+  text-transform: uppercase; color: var(--green); margin: 6px 0 14px;
+}
+.privacy-body { font-size: 0.97rem; }
+.privacy-body p { margin-bottom: 10px; }
+.privacy-body h3 { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 18px 0 8px; }
+.privacy-body ul { list-style: disc; padding-left: 20px; margin-bottom: 8px; }
+.privacy-body li { margin-bottom: 6px; }
+.privacy-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px; margin-top: 22px; }
+.privacy-actions .btn { flex: 1 1 180px; }
+.form-hint { font-size: 0.85rem; color: var(--muted); margin-top: 6px; }
+
 /* ---------- Footer ---------- */
 .site-footer { background: var(--green-ink); color: #dbe7d6; padding: 56px 20px 28px; }
 .site-footer a { color: #fff; }

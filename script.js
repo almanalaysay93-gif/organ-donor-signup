@@ -7,7 +7,7 @@
   "use strict";
 
   // Deployed Google Apps Script Web App Endpoint
-  const SUBMIT_ENDPOINT = "https://script.google.com/macros/s/AKfycbzIsJuw0cfL6SHlAbvJnpxsYLPjU0IKg2aWoGpd3SIKX2Te20bvGw3cXKQwLkJ_7Fmp/exec";
+  const SUBMIT_ENDPOINT = "https://script.google.com/macros/s/AKfycbyZvtapbCHmj3T9HlK8aQpasYfagFU4UozpybNemSY0kDHkHUnDM1XSxnaO3SUhxY0C/exec";
 
   const root = document.documentElement;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -410,9 +410,16 @@
   // ------------------------------------------------------------------------
   // 6. Form submission
   // ------------------------------------------------------------------------
+  const submitError = document.getElementById("submit-error");
+  const submitLabel = submitBtn ? submitBtn.textContent : "";
+  const privacyDialog = document.getElementById("privacy-dialog");
+  const privacyBack = document.getElementById("privacy-back");
+  const privacyContinue = document.getElementById("privacy-continue");
+
   if (form) {
     form.action = SUBMIT_ENDPOINT;
 
+    // Step 1: check the form, then open the privacy notice. Nothing is sent here.
     form.addEventListener("submit", function (e) {
       e.preventDefault();
 
@@ -424,20 +431,53 @@
         return;
       }
 
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Sending your sign-up...";
-
-      // Build simple url-encoded post body
-      const data = new URLSearchParams(new FormData(form));
-
-      fetch(SUBMIT_ENDPOINT, {
-        method: "POST",
-        mode: "no-cors",
-        body: data
-      })
-      .then(showThankYouState)
-      .catch(showThankYouState);
+      if (privacyDialog && typeof privacyDialog.showModal === "function") {
+        privacyDialog.showModal();
+      }
     });
+  }
+
+  // Go back: close the notice and return to the form. Nothing is sent.
+  if (privacyBack) {
+    privacyBack.addEventListener("click", function () { privacyDialog.close(); });
+  }
+
+  // Continue: consent given. Close the notice and send the pledge.
+  if (privacyContinue) {
+    privacyContinue.addEventListener("click", function () {
+      privacyDialog.close();
+      sendPledge();
+    });
+  }
+
+  // Step 2: send the pledge. Runs only after the donor agrees to the privacy notice.
+  function sendPledge() {
+    if (submitBtn.disabled) return;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending your sign-up...";
+    if (submitError) submitError.hidden = true;
+
+    // Build simple url-encoded post body
+    const data = new URLSearchParams(new FormData(form));
+
+    fetch(SUBMIT_ENDPOINT, {
+      method: "POST",
+      mode: "no-cors",
+      body: data
+    })
+    // no-cors hides the server reply, so only a network failure reaches the catch.
+    .then(showThankYouState)
+    .catch(showSendError);
+  }
+
+  // The send failed before it left the browser: keep the form, show the error, let the donor retry.
+  function showSendError() {
+    submitBtn.disabled = false;
+    submitBtn.textContent = submitLabel;
+    if (submitError) {
+      submitError.hidden = false;
+      submitError.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
   }
 
   function showThankYouState() {
