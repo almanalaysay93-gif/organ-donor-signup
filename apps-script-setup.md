@@ -6,6 +6,7 @@ For each sign-up it:
 
 1. Saves the row to the sheet `Web Sign-ups`.
 2. Emails the donor's next of kin once. The email shows the donor's name, the organs chosen, and the sender `SHARE, Southern Philippines Medical Center`.
+3. Emails `share@spmcdvo.net` once. The email shows the donor's name, mobile, email, organs, next of kin details, and whether the next of kin was notified.
 
 Address and birthday are not included in the email.
 
@@ -16,16 +17,16 @@ Address and birthday are not included in the email.
 3. Go to **Deploy > Manage deployments**. Edit the existing web app, choose **New version**, then **Deploy**. This keeps the same `/exec` URL, so `script.js` needs no change.
    If you create a new deployment instead, copy its `/exec` URL into `SUBMIT_ENDPOINT` in `script.js`.
 4. Authorize the Gmail permission when prompted.
-5. Check the sheet header row. It must match `HEADERS` in the script. Add any missing column names (for example `Blood Type`) to the right of the existing columns.
+5. Check the sheet header row. It must match `HEADERS` in the script. Add any missing column names to the right of the existing columns: `Next of Kin Email`, `Next of Kin Notified`, `Blood Type`, `Office Notified`.
 
 ## Test
 
-Run `testAppend()` once from the editor. It sends one email to the account running the script (the owner). It does not email any real family.
+Run `testAppend()` once from the editor. It sends two emails to the account running the script: one as the next of kin, one as the office. It does not email any real family or the SHARE office.
 Delete the `ZZTEST` row from the sheet afterwards.
 
 ## Limits
 
-- A consumer Gmail account can send about 100 emails per day.
+- A consumer Gmail account can send about 100 emails per day. Each sign-up uses two (next of kin and office), so the limit is about 50 sign-ups per day.
 - When the daily quota is used up, the sign-up is still saved. The sheet shows `Not sent: daily email quota used up`.
 - If sending fails for any other reason, the sheet shows `Failed: ...`.
 
@@ -38,6 +39,8 @@ Delete the `ZZTEST` row from the sheet afterwards.
  * Receives POSTs from the landing page, appends each sign-up to the sheet,
  * and emails the donor's next of kin once: they learn that the donor pledged
  * and which organs were chosen. Address and birthday are NOT sent in the email.
+ *
+ * Each sign-up also sends one notice to the SHARE office (OFFICE_EMAIL).
  *
  * SETUP (owner account must be spmcotsu@gmail.com, so the email is sent from it):
  *  1. Sign in to Google as spmcotsu@gmail.com and open the sheet that stores sign-ups.
@@ -59,12 +62,14 @@ Delete the `ZZTEST` row from the sheet afterwards.
 
 var SHEET_NAME = 'Web Sign-ups';
 var SENDER_NAME = 'SHARE, Southern Philippines Medical Center';
+var OFFICE_EMAIL = 'share@spmcdvo.net';
 var HEADERS = [
   'Timestamp', 'Full Name', 'Birthday', 'Sex', 'Address', 'Mobile',
   'Organs', 'Email', 'Contact Person', 'Contact Number', 'Conforme',
-  'Next of Kin Email', 'Next of Kin Notified', 'Blood Type'
+  'Next of Kin Email', 'Next of Kin Notified', 'Blood Type', 'Office Notified'
 ];
 var NOTIFIED_COL = HEADERS.indexOf('Next of Kin Notified') + 1;
+var OFFICE_COL = HEADERS.indexOf('Office Notified') + 1;
 var ALL_ORGANS_TEXT = 'All organs and tissues to be used for transplantation, research, or education';
 
 function doPost(e) {
@@ -98,7 +103,8 @@ function doPost(e) {
       p.conforme || '',
       nextOfKinEmail,
       'Pending',
-      p.bloodType || 'Not given'
+      p.bloodType || 'Not given',
+      'Pending'
     ]);
 
     // Email the next of kin. A failure here must not lose the sign-up, so it is recorded instead.
@@ -113,6 +119,19 @@ function doPost(e) {
       status = 'Failed: ' + mailErr;
     }
     sheet.getRange(row, NOTIFIED_COL).setValue(status);
+
+    // Notify the SHARE office. Its failure is recorded too, and never loses the sign-up.
+    var officeStatus = 'Sent';
+    try {
+      if (MailApp.getRemainingDailyQuota() < 1) {
+        officeStatus = 'Not sent: daily email quota used up';
+      } else {
+        sendOfficeNotice_(p, organs, status, row);
+      }
+    } catch (officeErr) {
+      officeStatus = 'Failed: ' + officeErr;
+    }
+    sheet.getRange(row, OFFICE_COL).setValue(officeStatus);
 
     return ContentService.createTextOutput('OK');
   } catch (err) {
@@ -145,6 +164,32 @@ function sendNextOfKinNotice_(donorName, kinName, to, organs) {
     to: to,
     subject: donorName + ' has pledged to be an organ donor',
     body: body,
+    name: SENDER_NAME
+  });
+}
+
+function sendOfficeNotice_(p, organs, kinStatus, row) {
+  var lines = [
+    'A new organ donor sign-up was received.',
+    '',
+    'Donor name: ' + (p.fullName || ''),
+    'Mobile: ' + (p.mobile || ''),
+    'Email: ' + (p.email || ''),
+    'Organs and tissues: ' + (organs === ALL_ORGANS_TEXT ? 'All organs and tissues' : organs),
+    '',
+    'Next of kin: ' + (p.contactName || ''),
+    'Next of kin mobile: ' + (p.contactNumber || ''),
+    'Next of kin email: ' + (p.nextOfKinEmail || ''),
+    'Next of kin notified: ' + kinStatus,
+    '',
+    'Sheet: ' + SHEET_NAME + ', row ' + row,
+    'Submitted: ' + new Date()
+  ];
+
+  MailApp.sendEmail({
+    to: OFFICE_EMAIL,
+    subject: 'New organ donor sign-up: ' + (p.fullName || 'donor'),
+    body: lines.join('\n'),
     name: SENDER_NAME
   });
 }

@@ -7,7 +7,7 @@
   "use strict";
 
   // Deployed Google Apps Script Web App Endpoint
-  const SUBMIT_ENDPOINT = "https://script.google.com/macros/s/AKfycbyZvtapbCHmj3T9HlK8aQpasYfagFU4UozpybNemSY0kDHkHUnDM1XSxnaO3SUhxY0C/exec";
+  const SUBMIT_ENDPOINT = "https://script.google.com/macros/s/AKfycbypv_2tSFicEBvnkkC1t2yRX4CB_Y0OFQRt_30VL7IXTNhA9-caRbk9ikbZurhQ_Uba/exec";
 
   const root = document.documentElement;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
